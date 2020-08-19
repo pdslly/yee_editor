@@ -1,8 +1,8 @@
 <template>
   <div class="wrap" ref="wrap" @mousedown="mouseDownHandle" @mouseup="mouseUpHandle" @mousemove="mouseMoveHandle">
       <switch-panel></switch-panel>
-      <draw-panel></draw-panel>
-      <view-panel></view-panel>
+      <draw-panel v-if="mode === MODE_EDIT"></draw-panel>
+      <view-panel v-if="mode === MODE_VIEW"></view-panel>
       <ctrl-panel></ctrl-panel>
   </div>
 </template>
@@ -14,6 +14,8 @@ import DrawPanel from './panels/drawPanel'
 import ViewPanel from './panels/viewPanel'
 import SwitchPanel from './panels/switchPanel'
 
+import {MODE_EDIT, MODE_VIEW} from '@/utils/constant'
+
 export default {
     name: 'yee-main-panel',
     components: {CtrlPanel, DrawPanel, ViewPanel, SwitchPanel},
@@ -21,9 +23,13 @@ export default {
         this.moveVm = null
         this.moveOffsetX = 0
         this.moveOffsetY = 0
+        Object.assign(this, {MODE_EDIT, MODE_VIEW})
         return {}
     },
-    computed: mapGetters(['getVm']),
+    computed: mapGetters({
+        getVm: 'getVm',
+        mode: 'getMode'
+    }),
     methods: {
         mouseDownHandle ({clientX, clientY, target}) {
             const {uid, move} = target.dataset

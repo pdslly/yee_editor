@@ -1,6 +1,6 @@
 <template>
-  <div class="panel" v-show="mode === MODE_EDIT" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
-      <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.name" v-bind="item" />
+  <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
+      <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" />
       <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
           <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>
           <i class="dot rt" data-action="resize-rt" style="right: -5px; top: -5px; cursor: ne-resize;"></i>
@@ -14,26 +14,28 @@
 </template>
 
 <script>
+import Once from 'once'
 import {mapGetters, mapMutations} from 'vuex'
-import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT, MODE_EDIT, MODE_VIEW} from '@/utils/constant'
+import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT} from '@/utils/constant'
 import {formatCtrlRectStyle} from '@/utils/style'
 import wText from '@/widgets/text/index'
 import wImage from '@/widgets/image/index'
+
+const initHistory = Once((vm) => {vm.pushHistory('初始化')})
 
 export default {
     name: 'draw-panel',
     data() {
         this.actionObj = null
         this.ctrlRectData = null
-        Object.assign(this, {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT, MODE_EDIT, MODE_VIEW})
+        Object.assign(this, {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT})
         return {}
     },
     components: {wText, wImage},
     computed: {
         ...mapGetters({
             pageData: 'getCurPageData',
-            curEle: 'getElement',
-            mode: 'getMode'
+            curEle: 'getElement'
         }),
         ctrlRectStyle() {
             if (!this.curEle) return {}
@@ -41,7 +43,7 @@ export default {
         }
     },
     created() {
-        this.pushHistory('初始化')
+        initHistory(this)
     },
     methods: {
         ...mapMutations(['setElementUID', 'pushHistory']),

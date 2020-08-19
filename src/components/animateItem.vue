@@ -1,6 +1,6 @@
 <template>
-    <div class="wrap" @mouseenter="selected = active = true" @mouseleave="mouseLeave">
-        <span class="txt animate__animated" :class="{[animate]: active}" @animationend="animationEnd">动画示例</span>
+    <div class="wrap is_animate_demo" :data-animate="animate" @mouseenter="selected = active = true" @mouseleave="mouseLeave">
+        <span class="txt animate__animated" :class="{[animate]: active}" @animationend="animationEnd">{{animate.split('__')[1]}}</span>
     </div>
 </template>
 
@@ -46,6 +46,8 @@ export default {
     margin-bottom: 1rem;
     overflow: hidden;
     .txt {
+        pointer-events: none;
+        user-select: none;
         font-size: 0.6rem;
     }
 }

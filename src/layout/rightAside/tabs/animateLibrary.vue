@@ -1,5 +1,5 @@
 <template>
-    <div class="panel">
+    <div class="panel" @click="addAnimate">
         <p class="title">提示动画</p>
         <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
@@ -67,11 +67,30 @@
 </template>
 
 <script>
-import AnimateItem from '@/components/animateItem' 
+import {mapGetters} from 'vuex'
+import AnimateItem from '@/components/animateItem'
 
 export default {
     name: 'tab-components-libraty',
-    components: {AnimateItem}
+    components: {AnimateItem},
+    computed: {
+        ...mapGetters({
+            curEle: 'getElement'
+        })
+    },
+    methods: {
+        addAnimate({target}) {
+            if (!target.classList.contains('is_animate_demo')) return false
+            if (!this.curEle) {
+                this.$message({
+                    message: '没有可用元素',
+                    type: 'warning'
+                })
+                return false
+            }
+            this.curEle['data-show'] = target.dataset['animate']
+        }
+    }
 }
 </script>
 
@@ -82,6 +101,8 @@ export default {
     box-sizing: border-box;
     padding: 0 0.5rem;
     .title {
+        margin-top: 0;
+        font-size: 1rem;
         color: $clightfont;
     }
     .row-flex {

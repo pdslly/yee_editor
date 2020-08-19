@@ -1,9 +1,6 @@
 <template>
-  <el-row type="flex" class="row-con">
-      <el-col class="col-logo" :span="2">
-          <img class="img-logo" src="../../assets/img/logo.png" alt="yee"/>
-      </el-col>
-      <el-col class="col-operators" :span="20"></el-col>
+  <el-row type="flex" align="middle" justify="center" class="row-con">
+      爱前端H5可视化编辑
   </el-row>
 </template>
 
@@ -14,19 +11,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/variables";
+
 .row-con {
     height: 100%;
-    .col-logo {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        .img-logo {
-            height: 3rem;
-        }
-    }
-    .col-operators {
-        display: inline-flex;
-        justify-content: center;
-    }
+    font-size: 1.4rem;
+    color: $chigh;
 }
 </style>

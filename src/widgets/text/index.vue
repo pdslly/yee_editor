@@ -1,5 +1,5 @@
 <template>
-  <div class="w-text" :style="formatElementStyle(styleObj)">{{value}}</div>
+  <div class="w-text animated animate__animated" :style="formatElementStyle(styleObj)">{{value}}</div>
 </template>
 
 <script>

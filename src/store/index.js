@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import Merge from 'deepmerge'
 import Debug from '@/utils/debug'
 import Clone from '@/utils/clone'
 
@@ -14,9 +13,13 @@ const Store = new Vuex.Store({
         vms: {},
         histories: [],
         metadata: [{
+            name: '',
+            data: {backgroundColor: 'blue', backgroundImage: ''}, 
+            elements: [{type: 'wText', ctrl: 'wTextCtrl', uid: '0_0', value: '测试文本1', 'data-show': "", 'data-delay': 0, styleObj: {width: 'auto', height: 'auto', backgroundColor: 'transparent', color: 'black', angel: 0, fontSize: 12, fontWeight: 'normal', left: 0, top: 0}}]
+        },{
             name: '', 
-            data: {backgroundColor: '', backgroundImage: ''}, 
-            elements: []
+            data: {backgroundColor: 'red', backgroundImage: ''}, 
+            elements: [{type: 'wText', ctrl: 'wTextCtrl', uid: '1_0', value: '测试文本2', 'data-show': "", 'data-delay': 0, styleObj: {width: 'auto', height: 'auto', backgroundColor: 'transparent', color: 'black', angel: 0, fontSize: 12, left: 0, top: 0}}]
         }],
         currentElementUID: null,
         currentPageIndex: 0,
@@ -28,7 +31,10 @@ const Store = new Vuex.Store({
             Debug.warn(!vm, `UID[${uid}]不存在`)
             return vm
         },
-        getCurPageData ({metadata, currentPageIndex}) {
+        getMetaData({metadata}) {
+            return metadata
+        },
+        getCurPageData({metadata, currentPageIndex}) {
             const data = metadata[currentPageIndex]
             Debug.warn(!data, `PAGE[${currentPageIndex}]不存在`)
             return data || {}

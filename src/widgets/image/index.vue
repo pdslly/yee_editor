@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" class="w-image" :style="formatElementStyle(styleObj)" />
+  <img :src="src" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)" />
 </template>
 
 <script>
