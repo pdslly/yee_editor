@@ -14,8 +14,6 @@ import FullPage from 'phy-touch/full_page/alloy_touch.full_page'
 import Transform from 'phy-touch/transformjs/transform'
 
 import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT} from '@/utils/constant'
-import wText from '@/widgets/text/index'
-import wImage from '@/widgets/image/index'
 
 window.Transform = Transform
 
@@ -25,7 +23,6 @@ export default {
         Object.assign(this, {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT})
         return {}
     },
-    components: {wText, wImage},
     mounted() {
         new FullPage('#viewMain', {
             animationEnd() {}

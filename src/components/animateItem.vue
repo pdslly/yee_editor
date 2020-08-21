@@ -34,7 +34,7 @@ export default {
 @import "../assets/scss/variables";
 
 .wrap {
-    height: 4rem;
+    height: 3.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;

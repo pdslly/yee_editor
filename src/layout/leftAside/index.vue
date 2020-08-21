@@ -4,16 +4,19 @@
             <tab-components-library></tab-components-library>
         </el-tab-pane>
         <el-tab-pane label="页面管理" name="pageManage">页面管理</el-tab-pane>
-        <el-tab-pane label="树结构" name="treeStruct">树结构</el-tab-pane>
+        <el-tab-pane label="元素管理" name="treeStruct">
+            <tab-element-manage></tab-element-manage>
+        </el-tab-pane>
     </el-tabs>
 </template>
 
 <script>
 import TabComponentsLibrary from './tabs/componentsLibrary'
+import TabElementManage from './tabs/elementManage'
 
 export default {
     name: 'yee-left-aside',
-    components: {TabComponentsLibrary},
+    components: {TabComponentsLibrary, TabElementManage},
     data: () => ({
         activeName: 'componentsLibrary'
     }),
@@ -25,8 +28,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/scss/variables";
-
-.tabs {
-    
-}
 </style>

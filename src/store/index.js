@@ -14,12 +14,8 @@ const Store = new Vuex.Store({
         histories: [],
         metadata: [{
             name: '',
-            data: {backgroundColor: 'blue', backgroundImage: ''}, 
-            elements: [{type: 'wText', ctrl: 'wTextCtrl', uid: '0_0', value: '测试文本1', 'data-show': "", 'data-delay': 0, styleObj: {width: 'auto', height: 'auto', backgroundColor: 'transparent', color: 'black', angel: 0, fontSize: 12, fontWeight: 'normal', left: 0, top: 0}}]
-        },{
-            name: '', 
-            data: {backgroundColor: 'red', backgroundImage: ''}, 
-            elements: [{type: 'wText', ctrl: 'wTextCtrl', uid: '1_0', value: '测试文本2', 'data-show': "", 'data-delay': 0, styleObj: {width: 'auto', height: 'auto', backgroundColor: 'transparent', color: 'black', angel: 0, fontSize: 12, left: 0, top: 0}}]
+            data: {backgroundColor: null, backgroundImage: null}, 
+            elements: []
         }],
         currentElementUID: null,
         currentPageIndex: 0,
@@ -78,14 +74,24 @@ const Store = new Vuex.Store({
             const data = Clone(state.metadata)
             const ind = state.currentHistoryIndex + 1
             const size = state.histories.length - ind
+            Debug.log(desc)
             state.histories.splice(ind, size, {desc, data})
             state.currentHistoryIndex = state.histories.length - 1
         },
-        addWidget({currentPageIndex, metadata}, element) {
+        delWidget(state, uid) {
+            const {currentPageIndex, metadata} = state
             const elements = metadata[currentPageIndex].elements
-            element.styleObj.zIndex = elements.length
-            element.uid = `${currentPageIndex}_${elements.length}`
-            elements.push(element)
+            const ind = elements.findIndex(ele => ele.uid === uid)
+            elements.splice(ind, 1)
+        },
+        addWidget(state, data) {
+            const {currentPageIndex, metadata} = state
+            const elements = metadata[currentPageIndex].elements
+
+            let eData = Clone(data)
+            eData.styleObj.zIndex = elements.length
+            state.currentElementUID = eData.uid = `${currentPageIndex}_${elements.length}`
+            elements.push(eData)
         }
     }
 })

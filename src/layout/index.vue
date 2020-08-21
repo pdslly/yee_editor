@@ -35,6 +35,7 @@ export default {
 .container {
     background-color: $cprimary;
     .layout-header {
+        padding: 0;
         background-color: $csecondary;
         border-bottom: 1px solid $cborder;
     }

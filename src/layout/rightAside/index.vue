@@ -14,12 +14,10 @@
 import {mapGetters} from 'vuex'
 
 import TabAnimateLibrary from './tabs/animateLibrary'
-import WTextCtrl from '@/widgets/text/control'
-import WImageCtrl from '@/widgets/image/control'
 
 export default {
     name: 'yee-right-aside',
-    components: {TabAnimateLibrary, WTextCtrl, WImageCtrl},
+    components: {TabAnimateLibrary},
     data: () => ({
         activeName: 'attr'
     }),

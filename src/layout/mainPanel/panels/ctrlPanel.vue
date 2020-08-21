@@ -49,15 +49,15 @@ export default {
 .panel {
     position: absolute;
     z-index: 2;
-    padding: 2rem 0;
-    width: 2.8rem;
+    padding: 1.6rem 0;
+    width: 2.2rem;
     background: $csecondary;
-    border-radius: 1.8rem;
+    border-radius: 1.6rem;
     cursor: move;
     .button {
         text-align: center;
-        font-size: 1.4rem;
-        line-height: 2.8rem;
+        font-size: 1.2rem;
+        line-height: 2.2rem;
         cursor: not-allowed;
         color: $clightfont;
         border-top: 1px solid $cborder;

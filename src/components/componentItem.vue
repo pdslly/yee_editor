@@ -1,15 +1,27 @@
 <template>
-    <div class="wrap">
+    <div class="wrap" @click="clickHandle(type, eData)">
         <i class="icon" :class="icon"></i>
-        <span class="txt"><slot/></span>
+        <span class="txt">{{name}}</span>
     </div>
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+
 export default {
     name: 'component-item',
     props: {
-        icon: String
+        type: String,
+        icon: String,
+        name: String,
+        eData: Object
+    },
+    methods: {
+        ...mapMutations(['addWidget', 'pushHistory']),
+        clickHandle(type, data) {
+            this.addWidget(data)
+            this.pushHistory(`添加组件[${type}]`)
+        }
     }
 }
 </script>
@@ -18,7 +30,7 @@ export default {
 @import "../assets/scss/variables";
 
 .wrap {
-    height: 4rem;
+    height: 3.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;

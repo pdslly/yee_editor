@@ -18,8 +18,6 @@ import Once from 'once'
 import {mapGetters, mapMutations} from 'vuex'
 import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT} from '@/utils/constant'
 import {formatCtrlRectStyle} from '@/utils/style'
-import wText from '@/widgets/text/index'
-import wImage from '@/widgets/image/index'
 
 const initHistory = Once((vm) => {vm.pushHistory('初始化')})
 
@@ -31,7 +29,6 @@ export default {
         Object.assign(this, {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT})
         return {}
     },
-    components: {wText, wImage},
     computed: {
         ...mapGetters({
             pageData: 'getCurPageData',
