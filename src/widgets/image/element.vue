@@ -9,10 +9,6 @@ export default {
     props: {
         img: {
             type: String
-        },
-        styleObj: {
-            type: Object,
-            default: () => ({})
         }
     },
     name: 'w-image',

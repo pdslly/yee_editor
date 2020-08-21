@@ -9,14 +9,6 @@ export default {
     props: {
         value: {
             type: String
-        },
-        styleObj: {
-            type: Object,
-            default: () => ({})
-        },
-        event: {
-            type: Object,
-            default: () => ({})
         }
     },
     name: 'w-button',

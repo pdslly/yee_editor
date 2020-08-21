@@ -10,10 +10,6 @@ export default {
         value: {
             type: String,
             default: '测试文本'
-        },
-        styleObj: {
-            type: Object,
-            default: () => ({})
         }
     },
     name: 'w-text',
