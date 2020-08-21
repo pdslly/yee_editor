@@ -1,32 +1,34 @@
 <template>
-    <div class="wrap" :class="{selected: curEle.uid === widget.uid}" @click="setElementUID(widget.uid)">
-        <i class="icon" :class="getIconByType(widget.type)"></i>
-        <span class="txt">{{widget.uid}}</span>
+    <div class="wrap" :class="{selected: curPageIndex === index}" @click="setPageIndex(index)">
+        <i class="icon icon-black"></i>
+        <span class="txt">{{page.name}}</span>
         <div class="right">
-            <span @click.stop="addWidget(widget)" title="复制" class="icon icon-copy"></span>
-            <span @click.stop="delWidget(widget.uid)" title="删除" class="icon icon-delete"></span>
+            <span @click.stop="copyPage(page)" title="复制" class="icon icon-copy"></span>
+            <span @click.stop="delPage(index)" title="删除" class="icon icon-delete"></span>
         </div>
     </div>
 </template>
 
 <script>
 import {mapMutations, mapGetters} from 'vuex'
-import {getIconByType} from '@/utils/element'
 
 export default {
-    name: 'element-item',
+    name: 'page-item',
     inheritAttrs: false,
     props: {
-        widget: Object
+        index: Number,
+        page: Object
     },
     computed: {
         ...mapGetters({
-            curEle: 'getElement'
+            curPageIndex: 'getCurPageIndex'
         })
     },
     methods: {
-        ...mapMutations(['setElementUID', 'delWidget', 'addWidget']),
-        getIconByType
+        ...mapMutations(['setPageIndex', 'delPage', 'addPage']),
+        copyPage() {
+            this.addPage({name: '未命名页面', style: this.page.style, elements: []})
+        }
     }
 }
 </script>

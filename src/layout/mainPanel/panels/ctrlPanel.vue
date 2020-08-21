@@ -4,7 +4,7 @@
       <div class="button icon icon-redo" @click="setHistoryIndexPlus" title="下一步" :class="{enable: histories.length > historyIndex + 1}"></div>
       <div class="button icon icon-level-up" @click="levelUpHandle" :class="{enable: curEle && curEle.styleObj.zIndex < 999}" title="向上一级"></div>
       <div class="button icon icon-level-down" @click="levelDownHandle" :class="{enable: curEle && curEle.styleObj.zIndex > 0}" title="向下一级"></div>
-      <div class="button icon icon-view" title="预览"></div>
+      <!-- <div class="button icon icon-view enable" title="预览"></div> -->
       <div class="button icon icon-save" title="保存"></div>
   </div>
 </template>

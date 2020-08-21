@@ -1,23 +1,25 @@
 <template>
-  <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
-      <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" />
-      <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
-          <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>
-          <i class="dot rt" data-action="resize-rt" style="right: -5px; top: -5px; cursor: ne-resize;"></i>
-          <i class="dot lb" data-action="resize-lb" style="left: -5px; top: calc(100% - 4px); cursor: ne-resize;"></i>
-          <i class="dot rb" data-action="resize-rb" style="right: -5px; top: calc(100% - 4px); cursor: nw-resize;"></i>
-          <!-- <i class="dot mt" data-action="move" style="left: calc(50% - 4px); top: -5px;"></i>
-          <i class="dot tt" data-action="rotate" style="left: calc(50% - 4px); top: -24px;"></i>
-          <span class="line"></span> -->
-      </div>
-  </div>
+    <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
+        <section class="page" :style="formatPageStyle(pageData.style)">
+            <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" />
+        </section>
+        <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
+            <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>
+            <i class="dot rt" data-action="resize-rt" style="right: -5px; top: -5px; cursor: ne-resize;"></i>
+            <i class="dot lb" data-action="resize-lb" style="left: -5px; top: calc(100% - 4px); cursor: ne-resize;"></i>
+            <i class="dot rb" data-action="resize-rb" style="right: -5px; top: calc(100% - 4px); cursor: nw-resize;"></i>
+            <!-- <i class="dot mt" data-action="move" style="left: calc(50% - 4px); top: -5px;"></i>
+            <i class="dot tt" data-action="rotate" style="left: calc(50% - 4px); top: -24px;"></i>
+            <span class="line"></span> -->
+        </div>
+    </div>
 </template>
 
 <script>
 import Once from 'once'
 import {mapGetters, mapMutations} from 'vuex'
 import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT} from '@/utils/constant'
-import {formatCtrlRectStyle} from '@/utils/style'
+import {formatCtrlRectStyle, formatPageStyle} from '@/utils/style'
 
 const initHistory = Once((vm) => {vm.pushHistory('初始化')})
 
@@ -44,6 +46,7 @@ export default {
     },
     methods: {
         ...mapMutations(['setElementUID', 'pushHistory']),
+        formatPageStyle,
         eleFocus ({target}, item) {
             const {offsetWidth, offsetHeight} = target
             item.styleObj.width = offsetWidth + 1
@@ -128,8 +131,13 @@ export default {
     background-size: 5px 5px;
     background-color: #FFF;
     background-image: linear-gradient(to right, #EEE 1px, transparent 1px), linear-gradient(to bottom, #EEE 1px, transparent 1px);
-    .element {
-        position: absolute;
+    .page {
+        height: 100%;
+        position: relative;
+        flex-shrink: 0;
+        .element {
+            position: absolute;
+        }
     }
     .ctrl-rect {
         position: absolute;

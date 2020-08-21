@@ -1,7 +1,7 @@
 <template>
     <div class="panel">
-        <main id="viewMain" class="main" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}">
-            <section v-for="(page, index) in metadata" :key="index" class="page">
+        <main ref="viewMain" class="main" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}">
+            <section v-for="(page, index) in metadata" :key="index" class="page" :style="formatPageStyle(page.style)">
                 <component @click.native.stop="eleFocus($event, item)" v-for="item in page.elements" :key="item.uid" :is="item.type" v-bind="item" />
             </section>
         </main>
@@ -10,12 +10,10 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import FullPage from 'phy-touch/full_page/alloy_touch.full_page'
-import Transform from 'phy-touch/transformjs/transform'
+import FullPage from '@/assets/js/fullpage'
 
+import {formatPageStyle} from '@/utils/style'
 import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT} from '@/utils/constant'
-
-window.Transform = Transform
 
 export default {
     name: 'view-panel',
@@ -24,7 +22,7 @@ export default {
         return {}
     },
     mounted() {
-        new FullPage('#viewMain', {
+        new FullPage(this.$refs.viewMain, {
             animationEnd() {}
         })
     },
@@ -34,6 +32,7 @@ export default {
         })
     },
     methods: {
+        formatPageStyle,
         genEleData({show}) {
             return {'data-show': show}
         }
@@ -46,6 +45,7 @@ export default {
 
 .panel {
     overflow: hidden;
+    background-color: #FFF;
     .main {
         height: 100%;
     }
@@ -53,7 +53,6 @@ export default {
         height: 100%;
         position: relative;
         flex-shrink: 0;
-        background-color: #FFF;
         .element {
             position: absolute;
         }

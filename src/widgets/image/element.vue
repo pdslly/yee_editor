@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)" />
+  <img :src="img" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import element from '@/mixins/element'
 
 export default {
     props: {
-        src: {
+        img: {
             type: String
         },
         styleObj: {

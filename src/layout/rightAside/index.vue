@@ -1,11 +1,14 @@
 <template>
     <el-tabs v-model="activeName" class="tabs" type="card" @tab-click="handleClick">
-        <el-tab-pane label="属性" name="attr">
+        <el-tab-pane label="组件属性" name="attr">
             <component v-if="curEle" :element="curEle" :is="curEle.ctrl"></component>
         </el-tab-pane>
-        <el-tab-pane label="事件" name="event">事件</el-tab-pane>
-        <el-tab-pane label="动画" name="animate">
+        <el-tab-pane label="组件事件" name="event">事件</el-tab-pane>
+        <el-tab-pane label="动画库" name="animate">
             <tab-animate-library></tab-animate-library>
+        </el-tab-pane>
+        <el-tab-pane label="页面配置" name="page">
+            <tab-page-setting></tab-page-setting>
         </el-tab-pane>
     </el-tabs>
 </template>
@@ -14,10 +17,11 @@
 import {mapGetters} from 'vuex'
 
 import TabAnimateLibrary from './tabs/animateLibrary'
+import TabPageSetting from './tabs/pageSetting'
 
 export default {
     name: 'yee-right-aside',
-    components: {TabAnimateLibrary},
+    components: {TabAnimateLibrary, TabPageSetting},
     data: () => ({
         activeName: 'attr'
     }),

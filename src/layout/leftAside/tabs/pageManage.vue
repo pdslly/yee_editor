@@ -1,19 +1,19 @@
 <template>
   <div class="panel">
-      <elementItem v-for="item in pageData.elements" :key="item.uid" :widget="item"></elementItem>
+      <page-item v-for="(page, index) in metadata" :key="index" :index="index" :page="page"></page-item>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
-import ElementItem from '@/components/elementItem'
+import PageItem from '@/components/pageItem'
 
 export default {
     name: 'tab-element-manage',
-    components: {ElementItem},
+    components: {PageItem},
     computed: {
         ...mapGetters({
-            pageData: 'getCurPageData'
+            metadata: 'getMetaData'
         })
     }
 }

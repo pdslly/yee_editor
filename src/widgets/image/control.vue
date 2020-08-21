@@ -12,8 +12,8 @@
                     <el-form-item label="动画延迟">
                         <el-input size="mini" type="number" v-model="element['data-delay']"></el-input>
                     </el-form-item>
-                    <el-form-item label="背景图">
-                        <el-input size="mini" v-model="element.src"></el-input>
+                    <el-form-item label="图片地址">
+                        <el-input size="mini" v-model="element.img"></el-input>
                     </el-form-item>
                 </el-form>
             </el-collapse-item>

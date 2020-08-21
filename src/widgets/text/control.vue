@@ -35,11 +35,11 @@
             </el-collapse-item>
             <el-collapse-item title="属性设置" :name="3">
                 <el-form size="mini" label-width="80px">
-                    <el-form-item label="背景色">
-                        <el-input size="mini" v-model="element.styleObj.backgroundColor"></el-input>
+                    <el-form-item label="文本颜色">
+                        <el-color-picker v-model="element.styleObj.color" size="mini"></el-color-picker>
                     </el-form-item>
                     <el-form-item label="文本内容">
-                        <el-input size="mini" v-model="element.value"></el-input>
+                        <el-input size="mini" v-model="element.value" clearable></el-input>
                     </el-form-item>
                     <el-form-item label="文本大小">
                         <el-input size="mini" type="number" v-model="element.styleObj.fontSize"></el-input>

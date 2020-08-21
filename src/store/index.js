@@ -13,8 +13,8 @@ const Store = new Vuex.Store({
         vms: {},
         histories: [],
         metadata: [{
-            name: '',
-            data: {backgroundColor: null, backgroundImage: null}, 
+            name: '未命名页面',
+            style: {backgroundColor: '', backgroundImage: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598009826886&di=4995eef62de809975431c52518675997&imgtype=0&src=http%3A%2F%2Fandroid.tgbus.com%2Fdownload%2FUploadFiles_2115%2F201205%2F20120525100923837.jpg', backgroundSize: 'contain', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, 
             elements: []
         }],
         currentElementUID: null,
@@ -29,6 +29,9 @@ const Store = new Vuex.Store({
         },
         getMetaData({metadata}) {
             return metadata
+        },
+        getCurPageIndex({currentPageIndex}) {
+            return currentPageIndex
         },
         getCurPageData({metadata, currentPageIndex}) {
             const data = metadata[currentPageIndex]
@@ -60,6 +63,9 @@ const Store = new Vuex.Store({
         setElementUID(state, uid) {
             state.currentElementUID = uid
         },
+        setPageIndex(state, index) {
+            state.currentPageIndex = index
+        },
         setHistoryIndexPlus(state) {
             state.currentElementUID = null
             state.currentHistoryIndex++
@@ -77,6 +83,13 @@ const Store = new Vuex.Store({
             Debug.log(desc)
             state.histories.splice(ind, size, {desc, data})
             state.currentHistoryIndex = state.histories.length - 1
+        },
+        addPage(state, data) {
+            state.currentPageIndex = state.metadata.push(Clone(data)) - 1
+        },
+        delPage(state, index) {
+            state.metadata.splice(index, 1)
+            state.currentPageIndex = Math.max(index - 1, 0)
         },
         delWidget(state, uid) {
             const {currentPageIndex, metadata} = state

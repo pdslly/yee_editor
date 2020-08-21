@@ -72,6 +72,13 @@ body {
         }
     }
 }
+.el-color-picker {
+    vertical-align: top;
+    .el-color-picker__trigger {
+        border-color: $cborder;
+    }
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
