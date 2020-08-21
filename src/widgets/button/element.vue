@@ -1,5 +1,5 @@
 <template>
-  <img :src="img" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)"  v-on="formatEvent(event)" />
+  <button class="w-button" :style="formatElementStyle(styleObj)" v-on="formatEvent(event)">{{value}}</button>
 </template>
 
 <script>
@@ -7,25 +7,32 @@ import element from '@/mixins/element'
 
 export default {
     props: {
-        img: {
+        value: {
             type: String
         },
         styleObj: {
             type: Object,
             default: () => ({})
+        },
+        event: {
+            type: Object,
+            default: () => ({})
         }
     },
-    name: 'w-image',
+    name: 'w-button',
     mixins: [element]
 }
 </script>
 
 <style lang="scss" scoped>
-.w-image {
+.w-button {
     position: absolute;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     outline: none;
     user-select: none;
     transform-origin: 'top center';
+    border: none;
 }
 </style>

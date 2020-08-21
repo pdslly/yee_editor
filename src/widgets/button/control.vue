@@ -10,10 +10,7 @@
                         <el-input size="mini" :value="element.type" disabled></el-input>
                     </el-form-item>
                     <el-form-item label="动画延迟">
-                        <el-input size="mini" type="number" v-model="element['data-delay']"></el-input>
-                    </el-form-item>
-                    <el-form-item label="图片地址">
-                        <el-input size="mini" v-model="element.img" clearable></el-input>
+                        <el-input size="mini" type="number" :value="element['data-delay']"></el-input>
                     </el-form-item>
                 </el-form>
             </el-collapse-item>
@@ -38,8 +35,27 @@
             </el-collapse-item>
             <el-collapse-item title="属性设置" :name="3">
                 <el-form size="mini" label-width="80px">
+                    <el-form-item label="背景色">
+                        <el-color-picker v-model="element.styleObj.backgroundColor" size="mini"></el-color-picker>
+                    </el-form-item>
+                    <el-form-item label="文本颜色">
+                        <el-color-picker v-model="element.styleObj.color" size="mini"></el-color-picker>
+                    </el-form-item>
                     <el-form-item label="圆角">
                         <el-slider :min="0" :max="20" v-model="element.styleObj.radius"></el-slider>
+                    </el-form-item>
+                    <el-form-item label="文本内容">
+                        <el-input size="mini" v-model="element.value" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="文本大小">
+                        <el-input size="mini" type="number" v-model="element.styleObj.fontSize"></el-input>
+                    </el-form-item>
+                    <el-form-item label="文本字重">
+                        <el-radio-group v-model="element.styleObj.fontWeight">
+                            <el-radio label="lighter">细体</el-radio>
+                            <el-radio label="normal">默认</el-radio>
+                            <el-radio label="bolder">粗体</el-radio>
+                        </el-radio-group>
                     </el-form-item>
                 </el-form>
             </el-collapse-item>
@@ -49,7 +65,7 @@
 
 <script>
 export default {
-    name: 'w-image-ctrl',
+    name: 'w-button-ctrl',
     props: {
         element: Object
     },

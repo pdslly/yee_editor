@@ -14,7 +14,7 @@ const Store = new Vuex.Store({
         histories: [],
         metadata: [{
             name: '未命名页面',
-            style: {backgroundColor: '', backgroundImage: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598009826886&di=4995eef62de809975431c52518675997&imgtype=0&src=http%3A%2F%2Fandroid.tgbus.com%2Fdownload%2FUploadFiles_2115%2F201205%2F20120525100923837.jpg', backgroundSize: 'contain', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, 
+            style: {backgroundColor: '', backgroundImage: '', backgroundSize: 'contain', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, 
             elements: []
         }],
         currentElementUID: null,
@@ -64,6 +64,7 @@ const Store = new Vuex.Store({
             state.currentElementUID = uid
         },
         setPageIndex(state, index) {
+            state.currentElementUID = null
             state.currentPageIndex = index
         },
         setHistoryIndexPlus(state) {
@@ -85,9 +86,11 @@ const Store = new Vuex.Store({
             state.currentHistoryIndex = state.histories.length - 1
         },
         addPage(state, data) {
+            state.currentElementUID = null
             state.currentPageIndex = state.metadata.push(Clone(data)) - 1
         },
         delPage(state, index) {
+            state.currentElementUID = null
             state.metadata.splice(index, 1)
             state.currentPageIndex = Math.max(index - 1, 0)
         },

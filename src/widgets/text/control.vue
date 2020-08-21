@@ -29,7 +29,7 @@
                         <el-input size="mini" type="number" v-model="element.styleObj.left"></el-input>
                     </el-form-item>
                     <el-form-item label="旋转角度">
-                        <el-input size="mini" type="number" v-model="element.styleObj.angel"></el-input>
+                        <el-slider :min="0" :max="360" v-model="element.styleObj.angel"></el-slider>
                     </el-form-item>
                 </el-form>
             </el-collapse-item>
@@ -37,6 +37,9 @@
                 <el-form size="mini" label-width="80px">
                     <el-form-item label="文本颜色">
                         <el-color-picker v-model="element.styleObj.color" size="mini"></el-color-picker>
+                    </el-form-item>
+                    <el-form-item label="圆角">
+                        <el-slider :min="0" :max="20" v-model="element.styleObj.radius"></el-slider>
                     </el-form-item>
                     <el-form-item label="文本内容">
                         <el-input size="mini" v-model="element.value" clearable></el-input>

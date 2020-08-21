@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import './widgets/text'
 import './widgets/image'
+import './widgets/button'
 
 Vue.config.productionTip = false
 

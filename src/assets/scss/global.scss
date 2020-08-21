@@ -78,6 +78,32 @@ body {
         border-color: $cborder;
     }
 }
+.el-slider {
+    padding: 0 0.5rem;
+    .el-slider__runway {
+        margin: 11px 0;
+        background-color: $clightfont;
+    }
+    .el-slider__button-wrapper {
+        width: 28px;
+        height: 28px;
+        top: -11px;
+    }
+    .el-slider__button {
+        border-color: $chigh;
+        background-color: $cprimary;
+    }
+    .el-slider__bar {
+        background-color: $chigh;
+    }
+}
+.el-divider {
+    background-color: $cborder !important;
+    .el-divider__text {
+        color: $clightfont;
+        background-color: $cprimary !important;
+    }
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

@@ -1,7 +1,7 @@
 <template>
     <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
         <section class="page" :style="formatPageStyle(pageData.style)">
-            <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" />
+            <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :event="{}"/>
         </section>
         <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
             <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>

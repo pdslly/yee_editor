@@ -1,6 +1,6 @@
 <template>
     <div class="panel" @click="addAnimate">
-        <p class="title">提示动画</p>
+        <el-divider>提示动画</el-divider>
         <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
                 <animate-item animate="animate__bounce"></animate-item>
@@ -30,7 +30,7 @@
                 <animate-item animate="animate__wobble"></animate-item>
             </el-col>
         </el-row>
-        <p class="title">入场动画</p>
+        <el-divider>入场动画</el-divider>
         <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
                 <animate-item animate="animate__bounceIn"></animate-item>

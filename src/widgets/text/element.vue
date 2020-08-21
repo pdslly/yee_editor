@@ -1,5 +1,5 @@
 <template>
-  <div class="w-text animated animate__animated" :style="formatElementStyle(styleObj)">{{value}}</div>
+  <div class="w-text animated animate__animated" :style="formatElementStyle(styleObj)"  v-on="formatEvent(event)">{{value}}</div>
 </template>
 
 <script>
@@ -24,9 +24,6 @@ export default {
 <style lang="scss" scoped>
 .w-text {
     position: absolute;
-    display: inline-block;
-    min-width: 10px;
-    min-height: 20px;
     outline: none;
     user-select: none;
     transform-origin: 'top center';

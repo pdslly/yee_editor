@@ -1,6 +1,6 @@
 <template>
     <div class="panel">
-        <p class="title">基础组件</p>
+        <el-divider>基础组件</el-divider>
         <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8" v-for="(item, index) in elements" :key="index">
                 <component-item v-bind="item"></component-item>

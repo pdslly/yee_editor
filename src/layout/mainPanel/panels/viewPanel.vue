@@ -2,7 +2,7 @@
     <div class="panel">
         <main ref="viewMain" class="main" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}">
             <section v-for="(page, index) in metadata" :key="index" class="page" :style="formatPageStyle(page.style)">
-                <component @click.native.stop="eleFocus($event, item)" v-for="item in page.elements" :key="item.uid" :is="item.type" v-bind="item" />
+                <component v-for="item in page.elements" :key="item.uid" :is="item.type" v-bind="item"/>
             </section>
         </main>
     </div>

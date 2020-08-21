@@ -3,7 +3,9 @@
         <el-tab-pane label="组件属性" name="attr">
             <component v-if="curEle" :element="curEle" :is="curEle.ctrl"></component>
         </el-tab-pane>
-        <el-tab-pane label="组件事件" name="event">事件</el-tab-pane>
+        <el-tab-pane label="组件事件" name="event">
+            <tab-event-setting></tab-event-setting>
+        </el-tab-pane>
         <el-tab-pane label="动画库" name="animate">
             <tab-animate-library></tab-animate-library>
         </el-tab-pane>
@@ -18,10 +20,11 @@ import {mapGetters} from 'vuex'
 
 import TabAnimateLibrary from './tabs/animateLibrary'
 import TabPageSetting from './tabs/pageSetting'
+import TabEventSetting from './tabs/eventSetting'
 
 export default {
     name: 'yee-right-aside',
-    components: {TabAnimateLibrary, TabPageSetting},
+    components: {TabAnimateLibrary, TabEventSetting, TabPageSetting},
     data: () => ({
         activeName: 'attr'
     }),
