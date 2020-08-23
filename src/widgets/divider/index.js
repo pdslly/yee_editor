@@ -8,7 +8,7 @@ Vue.component(Control.name, Control)
 
 addElement({
     type: Element.name,
-    name: '文本',
-    icon: 'icon-text',
-    eData: {type: Element.name, attrCtrl: Control.name, 'data-delay': 0, value: '文本', styleObj: {width: 24, height: 12, color: '#000000', angel: 0, fontSize: 12, fontWeight: 'normal', left: 0, top: 0}}
+    name: '分割线',
+    icon: 'icon-split',
+    eData: {type: Element.name, attrCtrl: Control.name, resize: false, 'data-delay': 0, styleObj: {width: 375, height: 1, left: 0, top: 100, radius: 0, backgroundColor: '#000000'}}
 })

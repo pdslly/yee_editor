@@ -1,7 +1,7 @@
 <template>
     <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
         <section class="page" :style="formatPageStyle(pageData.style)">
-            <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :event="{}"/>
+            <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :isEditMode="true"/>
         </section>
         <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
             <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>
@@ -68,6 +68,7 @@ export default {
             if (!this.actionObj || !this.curEle) return false
             const {action, originX, originY} = this.actionObj
             const style = this.curEle.styleObj
+            const canResize = this.curEle.resize !== false
             const {top, left, width, height} = this.ctrlRectData
             let disX = clientX - originX
             let disY = clientY - originY
@@ -78,14 +79,14 @@ export default {
                 if (disY >= -top && disY <= DRAW_RECT_HEIGHT - height - top) {
                     style.top = top + disY
                 }
-            } else if (action === 'resize-rb') {
+            } else if (action === 'resize-rb' && canResize) {
                 if (disX >= -width && disX <= DRAW_RECT_WIDTH - width - left) {
                     style.width = width + disX
                 }
                 if (disY >= -height && disY <= DRAW_RECT_HEIGHT - height - top) {
                     style.height = height + disY
                 }
-            } else if (action === 'resize-lt') {
+            } else if (action === 'resize-lt' && canResize) {
                 if (disX >= -left && disX <= width) {
                     style.width = width - disX
                     style.left = left + disX
@@ -94,7 +95,7 @@ export default {
                     style.height = height - disY
                     style.top = top + disY
                 }
-            } else if (action === 'resize-rt') {
+            } else if (action === 'resize-rt' && canResize) {
                 if (disX >= -width && disX <= DRAW_RECT_WIDTH - width - left) {
                     style.width = width + disX
                 }
@@ -102,7 +103,7 @@ export default {
                     style.height = height - disY
                     style.top = top + disY
                 }
-            } else if (action === 'resize-lb') {
+            } else if (action === 'resize-lb' && canResize) {
                 if (disY >= -height && disY <= DRAW_RECT_HEIGHT - height - top) {
                     style.height = height + disY
                 }

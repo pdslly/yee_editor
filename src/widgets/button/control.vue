@@ -1,6 +1,6 @@
 <template>
     <div class="panel">
-        <el-collapse v-model="collapseIndex" :accordion="false">
+        <el-collapse v-model="collapseIndex" :accordion="true">
             <el-collapse-item title="基础设置" :name="1">
                 <el-form size="mini" label-width="80px">
                     <el-form-item label="元素ID">

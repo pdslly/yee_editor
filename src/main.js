@@ -10,6 +10,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './widgets/text'
 import './widgets/image'
 import './widgets/button'
+import './widgets/divider'
+import './widgets/music'
 
 Vue.config.productionTip = false
 

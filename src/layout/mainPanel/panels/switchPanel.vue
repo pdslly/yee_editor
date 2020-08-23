@@ -37,14 +37,5 @@ export default {
 
 .panel {
     margin-bottom: 2rem;
-    .mode {
-        background-color: $cprimary;
-        border-color: $chigh;
-        color: $clightfont !important;
-        &.selected {
-            background-color: $chigh;
-            color: $csecondary !important;
-        }
-    }
 }
 </style>

@@ -9,37 +9,31 @@
                     <el-form-item label="元素类型">
                         <el-input size="mini" :value="element.type" disabled></el-input>
                     </el-form-item>
-                    <el-form-item label="动画延迟">
-                        <el-input size="mini" type="number" v-model="element['data-delay']"></el-input>
-                    </el-form-item>
-                    <el-form-item label="图片地址">
-                        <el-input size="mini" v-model="element.img" clearable></el-input>
+                    <el-form-item label="音乐地址">
+                        <el-input size="mini" v-model="element.music" clearable></el-input>
                     </el-form-item>
                 </el-form>
             </el-collapse-item>
             <el-collapse-item title="排版设置" :name="2">
                 <el-form size="mini" label-width="80px">
-                    <el-form-item label="宽度">
-                        <el-input size="mini" type="number" v-model="element.styleObj.width"></el-input>
-                    </el-form-item>
-                    <el-form-item label="高度">
-                        <el-input size="mini" type="number" v-model="element.styleObj.height"></el-input>
-                    </el-form-item>
                     <el-form-item label="上边距">
                         <el-input size="mini" type="number" v-model="element.styleObj.top"></el-input>
                     </el-form-item>
                     <el-form-item label="左边距">
                         <el-input size="mini" type="number" v-model="element.styleObj.left"></el-input>
                     </el-form-item>
-                    <el-form-item label="旋转角度">
-                        <el-slider :min="0" :max="360" v-model="element.styleObj.angel"></el-slider>
-                    </el-form-item>
                 </el-form>
             </el-collapse-item>
             <el-collapse-item title="属性设置" :name="3">
                 <el-form size="mini" label-width="80px">
-                    <el-form-item label="圆角">
-                        <el-slider :min="0" :max="20" v-model="element.styleObj.radius"></el-slider>
+                    <el-form-item label="图标颜色">
+                        <el-color-picker v-model="element.styleObj.color" size="mini"></el-color-picker>
+                    </el-form-item>
+                    <el-form-item label="自动播放">
+                        <el-radio-group v-model="element.autoplay">
+                            <el-radio :label="true">是</el-radio>
+                            <el-radio :label="false">否</el-radio>
+                        </el-radio-group>
                     </el-form-item>
                 </el-form>
             </el-collapse-item>
@@ -49,7 +43,7 @@
 
 <script>
 export default {
-    name: 'w-image-ctrl',
+    name: 'w-music-ctrl',
     props: {
         element: Object
     },

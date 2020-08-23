@@ -1,10 +1,12 @@
 <template>
     <el-tabs v-model="activeName" class="tabs" type="card" @tab-click="handleClick">
         <el-tab-pane label="组件属性" name="attr">
-            <component v-if="curEle" :element="curEle" :is="curEle.ctrl"></component>
+            <component v-if="curEle" :element="curEle" :is="curEle.attrCtrl"></component>
+            <p class="no-ele" v-else>当前没有可操作元素</p>
         </el-tab-pane>
         <el-tab-pane label="组件事件" name="event">
-            <tab-event-setting></tab-event-setting>
+            <component v-if="curEle && curEle.evtCtrl" :element="curEle" :is="curEle.evtCtrl"></component>
+            <p class="no-ele" v-else>当前元素没有可用事件</p>
         </el-tab-pane>
         <el-tab-pane label="动画库" name="animate">
             <tab-animate-library></tab-animate-library>
@@ -20,11 +22,10 @@ import {mapGetters} from 'vuex'
 
 import TabAnimateLibrary from './tabs/animateLibrary'
 import TabPageSetting from './tabs/pageSetting'
-import TabEventSetting from './tabs/eventSetting'
 
 export default {
     name: 'yee-right-aside',
-    components: {TabAnimateLibrary, TabEventSetting, TabPageSetting},
+    components: {TabAnimateLibrary, TabPageSetting},
     data: () => ({
         activeName: 'attr'
     }),
@@ -43,6 +44,10 @@ export default {
 @import "../../assets/scss/variables";
 
 .tabs {
-    
+    .no-ele {
+        text-align: center;
+        color: $clightfont;
+        font-size: 0.8rem;
+    }
 }
 </style>

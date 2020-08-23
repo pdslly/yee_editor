@@ -142,6 +142,11 @@
     content: $icon-music; 
   }
 }
+.icon-music2 {
+  &:before {
+    content: $icon-music2; 
+  }
+}
 .icon-align-right {
   &:before {
     content: $icon-align-right; 

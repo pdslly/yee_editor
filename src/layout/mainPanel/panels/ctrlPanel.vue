@@ -1,5 +1,6 @@
 <template>
   <div class="panel" data-move="true" :data-uid="this._uid" :style="{top: `${posX}px`, left: `${posY}px`}">
+      <div class="el-icon-more"></div>
       <div class="button icon icon-undo" @click="setHistoryIndexMinus" :class="{enable: historyIndex > 0}" title="上一步"></div>
       <div class="button icon icon-redo" @click="setHistoryIndexPlus" title="下一步" :class="{enable: histories.length > historyIndex + 1}"></div>
       <div class="button icon icon-level-up" @click="levelUpHandle" :class="{enable: curEle && curEle.styleObj.zIndex < 999}" title="向上一级"></div>
@@ -49,11 +50,19 @@ export default {
 .panel {
     position: absolute;
     z-index: 2;
-    padding: 1.6rem 0;
+    padding-bottom: 1.6rem;
     width: 2.2rem;
     background: $csecondary;
     border-radius: 1.6rem;
     cursor: move;
+    .el-icon-more {
+        width: 100%;
+        height: 1.6rem;
+        line-height: 1.6rem;
+        color: $cborder;
+        text-align: center;
+        pointer-events: none;
+    }
     .button {
         text-align: center;
         font-size: 1.2rem;

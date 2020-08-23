@@ -19,10 +19,11 @@ body {
     border: none !important;
 }
 .el-tabs .el-tabs__item {
-    color: $clightfont;
+    user-select: none;
+    color: $clightfont !important;
     border-left-color: $cborder !important;
     &.is-active {
-        color: $chigh;
+        color: $chigh !important;
         border-bottom-color: transparent !important;
         background-color: $cprimary;
     }
@@ -102,6 +103,21 @@ body {
     .el-divider__text {
         color: $clightfont;
         background-color: $cprimary !important;
+    }
+}
+.el-button {
+    background-color: $cprimary !important;
+    border-color: $chigh !important;
+    color: $clightfont !important;
+    &.selected {
+        background-color: $chigh !important;
+        color: $csecondary !important;
+    }
+}
+.el-textarea {
+    &__inner {
+        background-color: $cprimary !important;
+        border-color: $cborder !important;
     }
 }
 

@@ -1,9 +1,22 @@
 <template>
-  <img :src="img" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)"  v-on="formatEvent(event)" />
+  <img :src="img" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)"/>
 </template>
 
 <script>
 import element from '@/mixins/element'
+
+function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, color = '#FFF' }) {
+    return {
+        color,
+        zIndex,
+        width: `${width}px`, 
+        height: `${height}px`, 
+        top: `${top}px`, 
+        left: `${left}px`,
+        borderRadius: `${radius}px`,
+        transform: `rotateZ(${angel}deg)`,
+    }
+}
 
 export default {
     props: {
@@ -12,7 +25,10 @@ export default {
         }
     },
     name: 'w-image',
-    mixins: [element]
+    mixins: [element],
+    methods: {
+        formatElementStyle
+    }
 }
 </script>
 

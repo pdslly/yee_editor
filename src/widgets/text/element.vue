@@ -1,9 +1,25 @@
 <template>
-  <div class="w-text animated animate__animated" :style="formatElementStyle(styleObj)"  v-on="formatEvent(event)">{{value}}</div>
+  <div class="w-text animated animate__animated" :style="formatElementStyle(styleObj)">{{value}}</div>
 </template>
 
 <script>
 import element from '@/mixins/element'
+
+function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, fontSize = 16, fontWeight = 'normal', color = '#FFF', backgroundColor = 'transparent' }) {
+    return {
+        color,
+        zIndex,
+        fontWeight,
+        backgroundColor,
+        width: `${width}px`, 
+        height: `${height}px`, 
+        top: `${top}px`, 
+        left: `${left}px`,
+        borderRadius: `${radius}px`,
+        transform: `rotateZ(${angel}deg)`,
+        fontSize: `${fontSize}px`
+    }
+}
 
 export default {
     props: {
@@ -13,7 +29,10 @@ export default {
         }
     },
     name: 'w-text',
-    mixins: [element]
+    mixins: [element],
+    methods: {
+        formatElementStyle
+    }
 }
 </script>
 

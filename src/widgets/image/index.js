@@ -12,5 +12,5 @@ addElement({
     type: Element.name,
     name: '图片',
     icon: 'icon-image',
-    eData: {type: Element.name, ctrl: Control.name, 'data-delay': 0, event: {}, img, styleObj: {width: 200, height: 200, radius: 0, angel: 0, left: 0, top: 0}}
+    eData: {type: Element.name, attrCtrl: Control.name, 'data-delay': 0, img, styleObj: {width: 200, height: 200, radius: 0, angel: 0, left: 0, top: 0}}
 })

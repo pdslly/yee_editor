@@ -25,8 +25,9 @@ export default {
         })
     },
     methods: {
-        ...mapMutations(['setPageIndex', 'delPage', 'addPage']),
+        ...mapMutations(['setPageIndex', 'delPage', 'addPage', 'pushHistory']),
         copyPage() {
+            this.pushHistory('复制新页面')
             this.addPage({name: '未命名页面', style: this.page.style, elements: []})
         }
     }
