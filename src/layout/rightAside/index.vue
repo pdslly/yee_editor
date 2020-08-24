@@ -44,10 +44,17 @@ export default {
 @import "../../assets/scss/variables";
 
 .tabs {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
     .no-ele {
         text-align: center;
         color: $clightfont;
         font-size: 0.8rem;
+    }
+    /deep/ .el-tabs__content {
+        flex: 1;
+        overflow: auto;
     }
 }
 </style>

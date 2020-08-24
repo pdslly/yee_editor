@@ -3,8 +3,8 @@
         <i class="icon" :class="getIconByType(widget.type)"></i>
         <span class="txt">{{widget.uid}}</span>
         <div class="right">
-            <span @click.stop="addWidget(widget)" title="复制" class="icon icon-copy"></span>
-            <span @click.stop="delWidget(widget.uid)" title="删除" class="icon icon-delete"></span>
+            <span @click.stop="copy(widget)" title="复制" class="icon icon-copy"></span>
+            <span @click.stop="del(widget)" title="删除" class="icon icon-delete"></span>
         </div>
     </div>
 </template>
@@ -25,8 +25,16 @@ export default {
         })
     },
     methods: {
-        ...mapMutations(['setElementUID', 'delWidget', 'addWidget']),
-        getIconByType
+        ...mapMutations(['setElementUID', 'delWidget', 'pushHistory', 'addWidget']),
+        getIconByType,
+        copy(widget) {
+            this.pushHistory('复制组件')
+            this.addWidget(widget)
+        },
+        del(widget) {
+            this.pushHistory('删除组件')
+            this.delWidget(widget)
+        }
     }
 }
 </script>

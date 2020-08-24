@@ -12,6 +12,7 @@ import './widgets/image'
 import './widgets/button'
 import './widgets/divider'
 import './widgets/music'
+import './widgets/rect'
 
 Vue.config.productionTip = false
 

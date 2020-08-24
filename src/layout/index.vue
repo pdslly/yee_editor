@@ -3,7 +3,7 @@
         <el-header class="layout-header">
             <yee-header></yee-header>
         </el-header>
-        <el-container>
+        <el-container class="main-container">
             <el-aside style="width: 400px;">
                 <yee-left-aside></yee-left-aside>
             </el-aside>
@@ -34,6 +34,9 @@ export default {
 
 .container {
     background-color: $cprimary;
+    .main-container {
+        overflow: hidden;
+    }
     .layout-header {
         padding: 0;
         background-color: $csecondary;

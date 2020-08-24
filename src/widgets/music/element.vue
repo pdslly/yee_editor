@@ -8,7 +8,7 @@
 <script>
 import element from '@/mixins/element'
 
-function formatElementStyle({width = 375, height = 1, top = 0, left = 0, zIndex = 1, color = '#000000' }) {
+function formatElementStyle({width = 30, height = 30, top = 0, left = 0, zIndex = 1, color = '#000000' }) {
     return {
         zIndex,
         color,
@@ -60,7 +60,7 @@ export default {
     display: flex;
     outline: none;
     user-select: none;
-    font-size: 36px;
+    font-size: 26px;
     align-items: center;
     justify-content: center;
     transform-origin: center center;

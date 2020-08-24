@@ -14,6 +14,7 @@ const Store = new Vuex.Store({
         histories: [],
         metadata: [{
             name: '未命名页面',
+            eIndex: 0,
             style: {backgroundColor: '', backgroundImage: '', backgroundSize: 'contain', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, 
             elements: []
         }],
@@ -38,10 +39,10 @@ const Store = new Vuex.Store({
             Debug.warn(!data, `PAGE[${currentPageIndex}]不存在`)
             return data || {}
         },
-        getElement({metadata, currentElementUID}) {
+        getElement({metadata, currentPageIndex, currentElementUID}) {
             if (!currentElementUID) return null
-            const [pageInd, eleInd] = currentElementUID.split('_')
-            return metadata[pageInd].elements[eleInd]
+            const pageData = metadata[currentPageIndex]
+            return pageData.elements.find(({uid}) => currentElementUID === uid)
         },
         getCurHistoryIndex({currentHistoryIndex}) {
             return currentHistoryIndex
@@ -94,7 +95,7 @@ const Store = new Vuex.Store({
             state.metadata.splice(index, 1)
             state.currentPageIndex = Math.max(index - 1, 0)
         },
-        delWidget(state, uid) {
+        delWidget(state, {uid}) {
             const {currentPageIndex, metadata} = state
             const elements = metadata[currentPageIndex].elements
             const ind = elements.findIndex(ele => ele.uid === uid)
@@ -102,11 +103,13 @@ const Store = new Vuex.Store({
         },
         addWidget(state, data) {
             const {currentPageIndex, metadata} = state
-            const elements = metadata[currentPageIndex].elements
+            const pageData = metadata[currentPageIndex]
+            const elements = pageData.elements
 
             let eData = Clone(data)
-            eData.styleObj.zIndex = elements.length
-            state.currentElementUID = eData.uid = `${currentPageIndex}_${elements.length}`
+            let ind = ++pageData.eIndex
+            eData.styleObj.zIndex = ind
+            state.currentElementUID = eData.uid = `${currentPageIndex}_${ind}`
             elements.push(eData)
         }
     }

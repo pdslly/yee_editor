@@ -126,3 +126,25 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
   margin: 0;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: $csecondary;
+    border-radius: 6px;
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: $chigh;
+    border-radius: 6px;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $chigh; 
+}

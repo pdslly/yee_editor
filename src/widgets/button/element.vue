@@ -1,5 +1,5 @@
 <template>
-  <button class="w-button" :style="formatElementStyle(styleObj)" v-on="formatEvent(eventObj)">{{value}}</button>
+  <button class="w-button animated animate__animated" :style="formatElementStyle(styleObj)" v-on="formatEvent(eventObj)">{{value}}</button>
 </template>
 
 <script>

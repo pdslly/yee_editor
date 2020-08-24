@@ -30,7 +30,22 @@
                 <animate-item animate="animate__wobble"></animate-item>
             </el-col>
         </el-row>
-        <el-divider>入场动画</el-divider>
+        <el-divider>Back In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
+            <el-col :span="8">
+                <animate-item animate="animate__backInLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__backInRight"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__backInDown"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__backInUp"></animate-item>
+            </el-col>
+        </el-row>
+        <el-divider>Bounce In</el-divider>
         <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
                 <animate-item animate="animate__bounceIn"></animate-item>
@@ -47,15 +62,93 @@
             <el-col :span="8">
                 <animate-item animate="animate__bounceInUp"></animate-item>
             </el-col>
+        </el-row>
+        <el-divider>Fade In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
+            <el-col :span="8">
+                <animate-item animate="animate__fadeIn"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__fadeInLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__fadeInRight"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__fadeInDown"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__fadeInUp"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__fadeInTopLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__fadeInTopRight"></animate-item>
+            </el-col>
+        </el-row>
+        <el-divider>Flip In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
                 <animate-item animate="animate__flipInX"></animate-item>
             </el-col>
             <el-col :span="8">
                 <animate-item animate="animate__flipInY"></animate-item>
             </el-col>
+        </el-row>
+        <el-divider>Rotate In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
                 <animate-item animate="animate__rotateIn"></animate-item>
             </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__rotateInDownLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__rotateInDownRight"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__rotateInUpLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__rotateInUpRight"></animate-item>
+            </el-col>
+        </el-row>
+        <el-divider>Zoom In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
+            <el-col :span="8">
+                <animate-item animate="animate__zoomIn"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__zoomInDown"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__zoomInLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__zoomInRight"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__zoomInUp"></animate-item>
+            </el-col>
+        </el-row>
+        <el-divider>Slide In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
+            <el-col :span="8">
+                <animate-item animate="animate__slideInDown"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__slideInLeft"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__slideInRight"></animate-item>
+            </el-col>
+            <el-col :span="8">
+                <animate-item animate="animate__slideInUp"></animate-item>
+            </el-col>
+        </el-row>
+        <el-divider>Other In</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
                 <animate-item animate="animate__jackInTheBox"></animate-item>
             </el-col>
