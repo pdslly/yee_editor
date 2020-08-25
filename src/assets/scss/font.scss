@@ -27,6 +27,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-x-center {
+  &:before {
+    content: $icon-x-center; 
+  }
+}
+.icon-fill {
+  &:before {
+    content: $icon-fill; 
+  }
+}
+.icon-y-center {
+  &:before {
+    content: $icon-y-center; 
+  }
+}
+.icon-music2 {
+  &:before {
+    content: $icon-music2; 
+  }
+}
 .icon-copy {
   &:before {
     content: $icon-copy; 
@@ -140,11 +160,6 @@
 .icon-music {
   &:before {
     content: $icon-music; 
-  }
-}
-.icon-music2 {
-  &:before {
-    content: $icon-music2; 
   }
 }
 .icon-align-right {

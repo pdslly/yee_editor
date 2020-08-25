@@ -1,19 +1,20 @@
 <template>
-  <img :src="img" class="w-image animated animate__animated" :style="formatElementStyle(styleObj)"/>
+  <div class="w-image animated animate__animated" :style="formatElementStyle(styleObj, img)"></div>
 </template>
 
 <script>
 import element from '@/mixins/element'
 
-function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, color = '#FFF' }) {
+function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, color = '#FFF' }, img) {
     return {
         color,
         zIndex,
-        width: `${width}px`, 
-        height: `${height}px`, 
-        top: `${top}px`, 
-        left: `${left}px`,
+        width: `${this.calcXAttr(width)}px`, 
+        height: `${this.calcYAttr(height)}px`, 
+        top: `${this.calcYAttr(top)}px`, 
+        left: `${this.calcXAttr(left)}px`,
         borderRadius: `${radius}px`,
+        backgroundImage: `url(${img})`,
         transform: `rotateZ(${angel}deg)`,
     }
 }
@@ -39,5 +40,6 @@ export default {
     outline: none;
     user-select: none;
     transform-origin: 'top center';
+    background-size: cover;
 }
 </style>

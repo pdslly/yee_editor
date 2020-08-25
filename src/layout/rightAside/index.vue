@@ -1,7 +1,10 @@
 <template>
     <el-tabs v-model="activeName" class="tabs" type="card" @tab-click="handleClick">
         <el-tab-pane label="组件属性" name="attr">
-            <component v-if="curEle" :element="curEle" :is="curEle.attrCtrl"></component>
+            <template v-if="curEle">
+                <quick-position :element="curEle"></quick-position>
+                <component :element="curEle" :is="curEle.attrCtrl"></component>
+            </template>
             <p class="no-ele" v-else>当前没有可操作元素</p>
         </el-tab-pane>
         <el-tab-pane label="组件事件" name="event">
@@ -22,10 +25,11 @@ import {mapGetters} from 'vuex'
 
 import TabAnimateLibrary from './tabs/animateLibrary'
 import TabPageSetting from './tabs/pageSetting'
+import quickPosition from '@/modules/quickPosition'
 
 export default {
     name: 'yee-right-aside',
-    components: {TabAnimateLibrary, TabPageSetting},
+    components: {TabAnimateLibrary, TabPageSetting, quickPosition},
     data: () => ({
         activeName: 'attr'
     }),

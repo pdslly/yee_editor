@@ -28,11 +28,11 @@ export default {
         ...mapMutations(['setElementUID', 'delWidget', 'pushHistory', 'addWidget']),
         getIconByType,
         copy(widget) {
-            this.pushHistory('复制组件')
+            this.pushHistory(`复制组件[${widget.type}]`)
             this.addWidget(widget)
         },
         del(widget) {
-            this.pushHistory('删除组件')
+            this.pushHistory(`删除组件[${widget.uid}]`)
             this.delWidget(widget)
         }
     }

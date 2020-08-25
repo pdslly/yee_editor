@@ -1,7 +1,7 @@
 <template>
     <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
         <section class="page" :style="formatPageStyle(pageData.style)">
-            <component @click.native.stop="eleFocus($event, item)" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :isEditMode="true"/>
+            <component @click.native.stop="eleFocus($event, item)" :xRatio="1" :yRatio="1" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :isEditMode="true"/>
         </section>
         <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
             <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>
@@ -43,6 +43,9 @@ export default {
     },
     created() {
         initHistory(this)
+    },
+    mounted() {
+        this.listenKeyDown()
     },
     methods: {
         ...mapMutations(['setElementUID', 'pushHistory']),
@@ -118,6 +121,21 @@ export default {
             this.actionObj = null
             this.ctrlRectData = null
             this.pushHistory('修改图层')
+        },
+        listenKeyDown() {
+            document.onkeydown = e => {
+                if (!this.curEle) return false
+                const style = this.curEle.styleObj
+                if (e.keyCode == '38') {
+                    style.top--
+                } else if (e.keyCode == '40') {
+                    style.top++
+                } else if (e.keyCode == '37') {
+                    style.left--
+                } else if (e.keyCode == '39') {
+                    style.left++
+                }
+            }
         }
     }
 }

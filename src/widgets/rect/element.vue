@@ -15,10 +15,10 @@ function formatElementStyle({width = 30, height = 30, top = 0, left = 0, zIndex 
         borderStyle,
         borderRadius: `${radius}px`,
         borderWidth: `${borderWidth}px`,
-        width: `${width}px`, 
-        height: `${height}px`, 
-        top: `${top}px`,
-        left: `${left}px`
+        width: `${this.calcXAttr(width)}px`, 
+        height: `${this.calcYAttr(height)}px`, 
+        top: `${this.calcYAttr(top)}px`,
+        left: `${this.calcXAttr(left)}px`
     }
 }
 
@@ -53,7 +53,7 @@ export default {
     .glow {
         position: relative;
         pointer-events: none;
-        height: 10%;
+        height: 5%;
         background-image: linear-gradient(to top, transparent 0%, rgba(255, 255, 255, .3) 100%);
         animation: glow 3s infinite linear;
     }

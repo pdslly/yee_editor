@@ -1,7 +1,7 @@
 <template>
-  <div class="w-music" :class="{playing: !isEditMode && playing}" @click="play" :style="formatElementStyle(styleObj)">
+  <div class="w-music" :class="{playing: !isEditMode && playing}" @click="switchPlayStatus" :style="formatElementStyle(styleObj)">
       <i class="icon icon-music2"></i>
-      <audio ref="audio" v-if="!isEditMode" :src="music" :autoplay="autoplay"></audio>
+      <audio ref="audio" v-if="!isEditMode" :src="music" loop :autoplay="autoplay"></audio>
   </div>
 </template>
 
@@ -28,19 +28,23 @@ export default {
     },
     data () {
         return {
-            playing: false
+            playing: this.autoplay
         }
-    },
-    created() {
-        this.playing = this.autoplay
     },
     methods: {
         formatElementStyle,
         play() {
             if (this.isEditMode) return false
-            let el = this.$refs.audio
-            el[this.playing ? 'pause' : 'play']()
-            this.playing = !this.playing
+            this.$refs.audio.play()
+            this.playing = true
+        },
+        pause() {
+            if (this.isEditMode) return false
+            this.$refs.audio.pause()
+            this.playing = false
+        },
+        switchPlayStatus() {
+            this.playing ? this.pause() : this.play()
         }
     }
 }

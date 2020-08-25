@@ -10,10 +10,10 @@ function formatElementStyle({width = 375, height = 1, top = 0, left = 0, zIndex 
         zIndex,
         backgroundColor,
         borderRadius: `${radius}px`,
-        width: `${width}px`, 
-        height: `${height}px`, 
-        top: `${top}px`,
-        left: `${left}px`
+        width: `${this.calcXAttr(width)}px`, 
+        height: `${this.calcYAttr(height)}px`, 
+        top: `${this.calcYAttr(top)}px`, 
+        left: `${this.calcXAttr(left)}px`,
     }
 }
 

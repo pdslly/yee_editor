@@ -5,13 +5,14 @@
       <div class="button icon icon-redo" @click="setHistoryIndexPlus" title="下一步" :class="{enable: histories.length > historyIndex + 1}"></div>
       <div class="button icon icon-level-up" @click="levelUpHandle" :class="{enable: curEle && curEle.styleObj.zIndex < 999}" title="向上一级"></div>
       <div class="button icon icon-level-down" @click="levelDownHandle" :class="{enable: curEle && curEle.styleObj.zIndex > 0}" title="向下一级"></div>
-      <!-- <div class="button icon icon-view enable" title="预览"></div> -->
+      <div class="button icon icon-view enable" @click="preview" title="预览"></div>
       <div class="button icon icon-save" title="保存"></div>
   </div>
 </template>
 
 <script>
 import {mapGetters, mapMutations} from 'vuex'
+import {LOCAL_STORAGE_KEY} from '@/utils/constant'
 
 export default {
     name: 'ctrl-panel',
@@ -26,7 +27,8 @@ export default {
         ...mapGetters({
             curEle: 'getElement',
             historyIndex: 'getCurHistoryIndex',
-            histories: 'getHistories'
+            histories: 'getHistories',
+            metadata: 'getMetaData'
         })
     },
     methods: {
@@ -39,6 +41,10 @@ export default {
         },
         levelDownHandle() {
             this.curEle.styleObj.zIndex --
+        },
+        preview() {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.metadata))
+            window.open('/preview')
         }
     }
 }
@@ -49,7 +55,7 @@ export default {
 
 .panel {
     position: absolute;
-    z-index: 2;
+    z-index: 9999;
     padding-bottom: 1.6rem;
     width: 2.2rem;
     background: $csecondary;

@@ -11,13 +11,13 @@ function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0,
         zIndex,
         fontWeight,
         backgroundColor,
-        width: `${width}px`, 
-        height: `${height}px`, 
-        top: `${top}px`, 
-        left: `${left}px`,
+        width: `${this.calcXAttr(width)}px`,
+        height: `${this.calcYAttr(height)}px`, 
+        top: `${this.calcYAttr(top)}px`, 
+        left: `${this.calcXAttr(left)}px`,
         borderRadius: `${radius}px`,
         transform: `rotateZ(${angel}deg)`,
-        fontSize: `${fontSize}px`
+        fontSize: `${this.calcXAttr(fontSize)}px`
     }
 }
 
