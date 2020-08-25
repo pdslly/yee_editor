@@ -102,6 +102,16 @@
         background-color: $chigh !important;
         color: $csecondary !important;
     }
+    &.el-button--primary {
+        background-color: #409EFF !important;
+        border-color: #409EFF !important;
+        color: #FFF !important;
+    }
+    &.el-button--info {
+        background-color: #909399 !important;
+        border-color: #909399 !important;
+        color: #FFF !important;
+    }
 }
 .el-textarea {
     &__inner {

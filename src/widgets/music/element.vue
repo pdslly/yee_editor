@@ -12,10 +12,10 @@ function formatElementStyle({width = 30, height = 30, top = 0, left = 0, zIndex 
     return {
         zIndex,
         color,
-        width: `${width}px`, 
-        height: `${height}px`, 
-        top: `${top}px`,
-        left: `${left}px`
+        width: `${width}px`,
+        height: `${height}px`,
+        top: `${this.calcYAttr(top)}px`, 
+        left: `${this.calcXAttr(left)}px`,
     }
 }
 

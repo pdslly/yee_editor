@@ -23,7 +23,7 @@ export default {
         ...mapMutations(['addPage', 'pushHistory']),
         addNewPage() {
             this.pushHistory('新增空白页面')
-            this.addPage({name: '未命名页面', eIndex: 0, style: {backgroundColor: '', backgroundImage: '', backgroundSize: 'contain', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, elements: []})
+            this.addPage({name: '未命名页面', eIndex: 0, style: {backgroundColor: '', backgroundImage: '', backgroundSize: 'cover', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, elements: []})
         }
     }
 }

@@ -123,8 +123,8 @@ export default {
             this.pushHistory('修改图层')
         },
         listenKeyDown() {
-            document.onkeydown = e => {
-                if (!this.curEle) return false
+            this.$refs.panel.onkeydown = e => {
+                if (!this.curEle) return
                 const style = this.curEle.styleObj
                 if (e.keyCode == '38') {
                     style.top--

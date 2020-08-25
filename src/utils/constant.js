@@ -8,6 +8,6 @@ export const LOCAL_STORAGE_KEY = 'yee-metadata'
 export const DEF_METADATA = [{
     name: '未命名页面',
     eIndex: 0,
-    style: {backgroundColor: '', backgroundImage: '', backgroundSize: 'contain', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, 
+    style: {backgroundColor: '', backgroundImage: '', backgroundSize: 'cover', backgroundPosition: 'center center',  backgroundRepeat: 'no-repeat'}, 
     elements: []
 }]

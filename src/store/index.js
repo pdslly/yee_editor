@@ -3,16 +3,11 @@ import Vuex from 'vuex'
 import Debug from '@/utils/debug'
 import Clone from '@/utils/clone'
 
-import {MODE_EDIT, LOCAL_STORAGE_KEY, DEF_METADATA} from '@/utils/constant'
+import {MODE_EDIT, DEF_METADATA} from '@/utils/constant'
 
 Vue.use(Vuex)
 
-let metadata = localStorage.getItem(LOCAL_STORAGE_KEY)
-try {
-    metadata = metadata ? JSON.parse(metadata) : DEF_METADATA
-} catch(e) {
-    metadata = DEF_METADATA
-}
+let metadata = window.yee_metadata || DEF_METADATA
 
 const Store = new Vuex.Store({
     state: {

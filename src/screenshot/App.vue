@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import FullPage from '@/assets/js/fullpage'
 import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT, DEF_METADATA} from '@/utils/constant'
 import {formatPageStyle} from '@/utils/style'
 
@@ -22,11 +21,6 @@ export default {
             xRatio: window.innerWidth / DRAW_RECT_WIDTH,
             yRatio: window.innerHeight / DRAW_RECT_HEIGHT
         }
-    },
-    mounted() {
-        new FullPage(this.$refs.viewMain, {
-            animationEnd() {}
-        })
     },
     methods: {
         formatPageStyle

@@ -9,14 +9,17 @@
   },
   "dependencies": {
     "animate.css": "^4.1.0",
+    "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "deepmerge": "^4.2.2",
     "element-ui": "^2.13.2",
     "once": "^1.4.0",
     "phy-touch": "^0.1.1",
+    "qrcode": "^1.4.4",
     "swiper": "^6.1.2",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-axios": "^2.1.5",
     "vuex": "^3.5.1"
   },
   "devDependencies": {

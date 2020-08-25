@@ -3,6 +3,9 @@
         <el-divider>提示动画</el-divider>
         <el-row type="flex" :gutter="20" class="row-flex">
             <el-col :span="8">
+                <animate-item animate="animate__none"></animate-item>
+            </el-col>
+            <el-col :span="8">
                 <animate-item animate="animate__bounce"></animate-item>
             </el-col>
             <el-col :span="8">
