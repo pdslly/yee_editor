@@ -39,7 +39,7 @@ export default {
     display: block;
     outline: none;
     user-select: none;
-    transform-origin: 'top center';
-    background-size: cover;
+    background-size: 100% 100%;
+    transform-origin: center center;
 }
 </style>

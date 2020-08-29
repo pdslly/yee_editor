@@ -52,6 +52,9 @@ const Store = new Vuex.Store({
         }
     },
     mutations: {
+        setMetadata(state, metadata) {
+            state.metadata = metadata
+        },
         setMode(state, mode) {
             state.mode = mode
         },

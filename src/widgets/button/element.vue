@@ -45,7 +45,7 @@ export default {
     justify-content: center;
     outline: none;
     user-select: none;
-    transform-origin: 'top center';
+    transform-origin: center center;
     border: none;
 }
 </style>

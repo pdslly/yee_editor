@@ -41,6 +41,6 @@ export default {
     position: absolute;
     outline: none;
     user-select: none;
-    transform-origin: 'top center';
+    transform-origin: center center;
 }
 </style>

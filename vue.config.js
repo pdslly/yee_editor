@@ -19,11 +19,11 @@ module.exports = {
             chunks: ['screenshot', 'chunk-vendors', 'chunk-common']
         }
     },
-    publicPath: process.env.NODE_ENV === "production" ? "/static/yee/" : "/",
+    publicPath: process.env.NODE_ENV === "production" ? "/yee/" : "/",
     devServer: {
         port: 8080,
         host: "0.0.0.0",
-        proxy: "http://localhost:8081",
+        proxy: process.env.VUE_APP_DOMAIN
     },
     productionSourceMap: false,
     parallel: true,

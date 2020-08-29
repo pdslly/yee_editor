@@ -47,6 +47,9 @@ export default {
     mounted() {
         this.listenKeyDown()
     },
+    beforeDestroy() {
+        window.onkeydown = function() {}
+    },
     methods: {
         ...mapMutations(['setElementUID', 'pushHistory']),
         formatPageStyle,
@@ -123,7 +126,7 @@ export default {
             this.pushHistory('修改图层')
         },
         listenKeyDown() {
-            this.$refs.panel.onkeydown = e => {
+            window.onkeydown = e => {
                 if (!this.curEle) return
                 const style = this.curEle.styleObj
                 if (e.keyCode == '38') {
