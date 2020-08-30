@@ -25,11 +25,11 @@ export default {
         })
     },
     methods: {
-        ...mapMutations(['setElementUID', 'setCacheCtrlData', 'delWidget', 'pushHistory', 'addWidget']),
+        ...mapMutations(['setElementUID', 'updateCacheCtrlData', 'delWidget', 'pushHistory', 'addWidget']),
         getIconByType,
-        clickHandle({uid, styleObj: {width, height, top, left, angel}}) {
-            this.setElementUID(uid)
-            this.setCacheCtrlData({width, height, top, left, angel})
+        clickHandle(widget) {
+            this.setElementUID(widget.uid)
+            this.updateCacheCtrlData(widget)
         },
         copy(widget) {
             this.pushHistory(`复制组件[${widget.type}]`)

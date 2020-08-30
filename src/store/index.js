@@ -56,8 +56,8 @@ const Store = new Vuex.Store({
         }
     },
     mutations: {
-        setCacheCtrlData(state, data) {
-            state.cacheCtrlData = data
+        updateCacheCtrlData(state, {styleObj: {width, height, left, top, angel = 0}}) {
+            state.cacheCtrlData = {width, height, left, top, angel}
         },
         setMetadata(state, metadata) {
             state.metadata = metadata

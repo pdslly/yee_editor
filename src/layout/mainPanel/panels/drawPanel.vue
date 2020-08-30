@@ -51,15 +51,14 @@ export default {
         window.onkeydown = function() {}
     },
     methods: {
-        ...mapMutations(['setElementUID', 'pushHistory', 'setCacheCtrlData']),
+        ...mapMutations(['setElementUID', 'pushHistory', 'updateCacheCtrlData']),
         formatPageStyle,
         eleFocus (_, item) {
             // const {offsetWidth, offsetHeight} = target
             // item.styleObj.width = offsetWidth + 1
             // item.styleObj.height = offsetHeight
-            const {width, height, top, left, angel} = item.styleObj
             this.setElementUID(item.uid)
-            this.setCacheCtrlData({width, height, top, left, angel})
+            this.updateCacheCtrlData(item)
         },
         panelMouseDown({target, clientX, clientY}) {
             const {action} = target.dataset
@@ -124,8 +123,9 @@ export default {
             }
         },
         panelMouseUp() {
-            if (!this.actionObj) return false
+            if (!this.actionObj || !this.curEle) return false
             this.actionObj = null
+            this.updateCacheCtrlData(this.curEle)
             this.pushHistory('修改图层')
         },
         listenKeyDown() {
@@ -134,12 +134,16 @@ export default {
                 const style = this.curEle.styleObj
                 if (e.keyCode == '38') {
                     style.top--
+                    this.updateCacheCtrlData(this.curEle)
                 } else if (e.keyCode == '40') {
                     style.top++
+                    this.updateCacheCtrlData(this.curEle)
                 } else if (e.keyCode == '37') {
                     style.left--
+                    this.updateCacheCtrlData(this.curEle)
                 } else if (e.keyCode == '39') {
                     style.left++
+                    this.updateCacheCtrlData(this.curEle)
                 }
             }
         }
