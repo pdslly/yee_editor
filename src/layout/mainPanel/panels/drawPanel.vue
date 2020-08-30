@@ -27,14 +27,14 @@ export default {
     name: 'draw-panel',
     data() {
         this.actionObj = null
-        this.ctrlRectData = null
         Object.assign(this, {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT})
         return {}
     },
     computed: {
         ...mapGetters({
             pageData: 'getCurPageData',
-            curEle: 'getElement'
+            curEle: 'getElement',
+            cacheCtrlData: 'getCacheCtrlData'
         }),
         ctrlRectStyle() {
             if (!this.curEle) return {}
@@ -51,33 +51,37 @@ export default {
         window.onkeydown = function() {}
     },
     methods: {
-        ...mapMutations(['setElementUID', 'pushHistory']),
+        ...mapMutations(['setElementUID', 'pushHistory', 'setCacheCtrlData']),
         formatPageStyle,
-        eleFocus ({target}, item) {
-            const {offsetWidth, offsetHeight} = target
-            item.styleObj.width = offsetWidth + 1
-            item.styleObj.height = offsetHeight
+        eleFocus (_, item) {
+            // const {offsetWidth, offsetHeight} = target
+            // item.styleObj.width = offsetWidth + 1
+            // item.styleObj.height = offsetHeight
+            const {width, height, top, left, angel} = item.styleObj
             this.setElementUID(item.uid)
+            this.setCacheCtrlData({width, height, top, left, angel})
         },
         panelMouseDown({target, clientX, clientY}) {
             const {action} = target.dataset
             if (target === this.$refs.panel || !this.curEle || !action) {
-                this.ctrlRectData = this.actionObj = null
+                this.actionObj = null
                 this.setElementUID(null)
                 return false
             }
-            const {width, height, left, top, angel} = this.curEle.styleObj
             this.actionObj = {action, originX: clientX, originY: clientY}
-            this.ctrlRectData = {width, height, top, left, angel}
         },
         panelMouseMove({clientX, clientY}) {
             if (!this.actionObj || !this.curEle) return false
             const {action, originX, originY} = this.actionObj
             const style = this.curEle.styleObj
             const canResize = this.curEle.resize !== false
-            const {top, left, width, height} = this.ctrlRectData
+            let {top, left, width, height} = this.cacheCtrlData
             let disX = clientX - originX
             let disY = clientY - originY
+            top = top >> 0
+            left = left >> 0
+            width = width >> 0
+            height = height >> 0
             if (action === 'move') {
                 if (disX >= -left && disX <= DRAW_RECT_WIDTH - width - left) {
                     style.left = left + disX
@@ -122,7 +126,6 @@ export default {
         panelMouseUp() {
             if (!this.actionObj) return false
             this.actionObj = null
-            this.ctrlRectData = null
             this.pushHistory('修改图层')
         },
         listenKeyDown() {

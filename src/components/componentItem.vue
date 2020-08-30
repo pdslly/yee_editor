@@ -17,9 +17,11 @@ export default {
         eData: Object
     },
     methods: {
-        ...mapMutations(['addWidget', 'pushHistory']),
+        ...mapMutations(['setCacheCtrlData', 'addWidget', 'pushHistory']),
         clickHandle(type, data) {
+            const {width, height, top, left, angel} = data.styleObj
             this.addWidget(data)
+            this.setCacheCtrlData({width, height, top, left, angel})
             this.pushHistory(`添加组件[${type}]`)
         }
     }

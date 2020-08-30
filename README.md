@@ -1,4 +1,4 @@
-# yee
+# yee-editor
 
 ## Project setup
 ```

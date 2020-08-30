@@ -15,6 +15,7 @@ const Store = new Vuex.Store({
         mode: MODE_EDIT,
         vms: {},
         histories: [],
+        cacheCtrlData: null,
         currentElementUID: null,
         currentPageIndex: 0,
         currentHistoryIndex: -1,
@@ -49,9 +50,15 @@ const Store = new Vuex.Store({
         },
         getMode({mode}) {
             return mode
+        },
+        getCacheCtrlData({cacheCtrlData}) {
+            return cacheCtrlData
         }
     },
     mutations: {
+        setCacheCtrlData(state, data) {
+            state.cacheCtrlData = data
+        },
         setMetadata(state, metadata) {
             state.metadata = metadata
         },

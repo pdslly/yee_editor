@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap" :class="{selected: curEle && curEle.uid === widget.uid}" @click="setElementUID(widget.uid)">
+    <div class="wrap" :class="{selected: curEle && curEle.uid === widget.uid}" @click="clickHandle(widget)">
         <i class="icon" :class="getIconByType(widget.type)"></i>
         <span class="txt">{{widget.uid}}</span>
         <div class="right">
@@ -25,8 +25,12 @@ export default {
         })
     },
     methods: {
-        ...mapMutations(['setElementUID', 'delWidget', 'pushHistory', 'addWidget']),
+        ...mapMutations(['setElementUID', 'setCacheCtrlData', 'delWidget', 'pushHistory', 'addWidget']),
         getIconByType,
+        clickHandle({uid, styleObj: {width, height, top, left, angel}}) {
+            this.setElementUID(uid)
+            this.setCacheCtrlData({width, height, top, left, angel})
+        },
         copy(widget) {
             this.pushHistory(`复制组件[${widget.type}]`)
             this.addWidget(widget)
