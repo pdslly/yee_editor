@@ -1,5 +1,7 @@
 <template>
   <div class="panel">
+      <widget-item v-if="metaData.bgm" :widget="metaData.bgm"></widget-item>
+      <widget-item v-if="metaData.script" :widget="metaData.script"></widget-item>
       <widget-item v-for="item in pageData.elements" :key="item.uid" :widget="item"></widget-item>
   </div>
 </template>
@@ -13,7 +15,8 @@ export default {
     components: {WidgetItem},
     computed: {
         ...mapGetters({
-            pageData: 'getCurPageData'
+            pageData: 'getCurPageData',
+            metaData: 'getMetaData'
         })
     }
 }

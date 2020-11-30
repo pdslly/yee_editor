@@ -1,9 +1,13 @@
 <template>
     <div class="panel" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}" ref="panel" @mousedown="panelMouseDown" @mousemove="panelMouseMove" @mouseup="panelMouseUp">
-        <section class="page" :style="formatPageStyle(pageData.style)">
-            <component @click.native.stop="eleFocus($event, item)" :xRatio="1" :yRatio="1" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :isEditMode="true"/>
-        </section>
-        <div v-show="curEle" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
+        <main class="app">
+            <component v-if="metaData.bgm" @click.native.stop="eleFocus($event, metaData.bgm)" :xRatio="1" :yRatio="1" :is="metaData.bgm.type" v-bind="metaData.bgm" :isEditMode="true"/>
+            <component v-if="metaData.script" :is="metaData.script.type" v-bind="metaData.script" :isEditMode="true"/>
+            <section class="page" :style="formatPageStyle(pageData.style)">
+                <component @click.native.stop="eleFocus($event, item)" :xRatio="1" :yRatio="1" v-for="item in pageData.elements" :key="item.uid" :is="item.type" v-bind="item" :isEditMode="true"/>
+            </section>
+        </main>
+        <div v-show="curEle && curEle.styleObj" data-action="move" class="ctrl-rect" :style="ctrlRectStyle">
             <i class="dot lt" data-action="resize-lt" style="left: -5px; top: -5px; cursor: nw-resize;"></i>
             <i class="dot rt" data-action="resize-rt" style="right: -5px; top: -5px; cursor: ne-resize;"></i>
             <i class="dot lb" data-action="resize-lb" style="left: -5px; top: calc(100% - 4px); cursor: ne-resize;"></i>
@@ -32,12 +36,13 @@ export default {
     },
     computed: {
         ...mapGetters({
+            metaData: 'getMetaData',
             pageData: 'getCurPageData',
             curEle: 'getElement',
             cacheCtrlData: 'getCacheCtrlData'
         }),
         ctrlRectStyle() {
-            if (!this.curEle) return {}
+            if (!this.curEle || !this.curEle.styleObj) return {}
             return formatCtrlRectStyle(this.curEle.styleObj)
         }
     },
@@ -51,20 +56,20 @@ export default {
         window.onkeydown = function() {}
     },
     methods: {
-        ...mapMutations(['setElementUID', 'pushHistory', 'updateCacheCtrlData']),
+        ...mapMutations(['setElement', 'pushHistory', 'updateCacheCtrlData']),
         formatPageStyle,
         eleFocus (_, item) {
             // const {offsetWidth, offsetHeight} = target
             // item.styleObj.width = offsetWidth + 1
             // item.styleObj.height = offsetHeight
-            this.setElementUID(item.uid)
+            this.setElement(item)
             this.updateCacheCtrlData(item)
         },
         panelMouseDown({target, clientX, clientY}) {
             const {action} = target.dataset
             if (target === this.$refs.panel || !this.curEle || !action) {
                 this.actionObj = null
-                this.setElementUID(null)
+                this.setElement(null)
                 return false
             }
             this.actionObj = {action, originX: clientX, originY: clientY}
@@ -160,10 +165,14 @@ export default {
     background-size: 5px 5px;
     background-color: #FFF;
     background-image: linear-gradient(to right, #EEE 1px, transparent 1px), linear-gradient(to bottom, #EEE 1px, transparent 1px);
-    .page {
+    .app {
         height: 100%;
         position: relative;
         flex-shrink: 0;
+    }
+    .page {
+        height: 100%;
+        position: relative;
         .element {
             position: absolute;
         }

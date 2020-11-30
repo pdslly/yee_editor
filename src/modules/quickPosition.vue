@@ -1,8 +1,8 @@
 <template>
     <el-row type="flex" align="center" justify="space-around" class="wrap">
-        <el-button class="icon icon-x-center" @click="setXCenter" title="水平居中" size="mini"></el-button>
-        <el-button class="icon icon-y-center" @click="setYCenter" title="垂直居中" size="mini"></el-button>
-        <el-button class="icon icon-fill" @click="setFullscreen" title="全屏" size="mini"></el-button>
+        <el-button class="icon icon-x-center" :disabled="!element.styleObj" @click="setXCenter" title="水平居中" size="mini"></el-button>
+        <el-button class="icon icon-y-center" :disabled="!element.styleObj" @click="setYCenter" title="垂直居中" size="mini"></el-button>
+        <el-button class="icon icon-fill" :disabled="!element.resize" @click="setFullscreen" title="全屏" size="mini"></el-button>
     </el-row>
 </template>
 
@@ -16,18 +16,20 @@ export default {
         element: Object
     },
     methods: {
-        ...mapMutations(['pushHistory']),
+        ...mapMutations(['pushHistory', 'updateCacheCtrlData']),
         setXCenter() {
             const style = this.element.styleObj
             const {width} = style
             this.pushHistory('设置水平居中')
             style.left = Math.round((DRAW_RECT_WIDTH - width) / 2)
+            this.updateCacheCtrlData(this.element)
         },
         setYCenter() {
             const style = this.element.styleObj
             const {height} = style
             this.pushHistory('设置垂直居中')
             style.top = Math.round((DRAW_RECT_HEIGHT - height) / 2)
+            this.updateCacheCtrlData(this.element)
         },
         setFullscreen() {
             const style = this.element.styleObj
@@ -36,6 +38,7 @@ export default {
             style.top = 0
             style.width = DRAW_RECT_WIDTH
             style.height = DRAW_RECT_HEIGHT
+            this.updateCacheCtrlData(this.element)
         }
     }
 }

@@ -4,7 +4,7 @@ function isObject(target) {
 
 function deepClone(target) {
     if (!isObject(target)) return target
-    let dest = Array.isArray(target) ? [] : {}
+    let dest = Array.isArray(target) ? [] : target === null ? null : {}
     for (let key in target) {
         if (key === '__ob__') continue
         dest[key] = isObject(target[key]) ? deepClone(target[key]) : target[key]

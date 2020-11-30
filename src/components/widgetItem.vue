@@ -3,7 +3,7 @@
         <i class="icon" :class="getIconByType(widget.type)"></i>
         <span class="txt">{{widget.uid}}</span>
         <div class="right">
-            <span @click.stop="copy(widget)" title="复制" class="icon icon-copy"></span>
+            <span v-show="!widget.isConfig" @click.stop="copy(widget)" title="复制" class="icon icon-copy"></span>
             <span @click.stop="del(widget)" title="删除" class="icon icon-delete"></span>
         </div>
     </div>
@@ -25,10 +25,10 @@ export default {
         })
     },
     methods: {
-        ...mapMutations(['setElementUID', 'updateCacheCtrlData', 'delWidget', 'pushHistory', 'addWidget']),
+        ...mapMutations(['setElement', 'updateCacheCtrlData', 'delWidget', 'pushHistory', 'addWidget']),
         getIconByType,
         clickHandle(widget) {
-            this.setElementUID(widget.uid)
+            this.setElement(widget)
             this.updateCacheCtrlData(widget)
         },
         copy(widget) {

@@ -1,24 +1,38 @@
 <template>
-    <div class="panel">
-        <main ref="viewMain" class="main">
-            <section v-for="(page, index) in metadata" :key="index" class="page" :style="formatPageStyle(page.style)">
-                <component v-for="item in page.elements"  :xRatio="xRatio" :yRatio="yRatio" :key="item.uid" :is="item.type" v-bind="item"/>
-            </section>
+    <div class="app">
+        <main class="main">
+            <component v-if="metaData.bgm" :xRatio="xRatio" :yRatio="yRatio" :is="metaData.bgm.type" v-bind="metaData.bgm"/>
+            <component v-if="metaData.script" :is="metaData.script.type" v-bind="metaData.script"/>
+            <div ref="viewMain" class="wrap">
+                <section v-for="(page, index) in metaData.pages" :key="index" class="page" :style="formatPageStyle(page.style)">
+                    <component v-for="item in page.elements" :xRatio="xRatio" :yRatio="yRatio" :key="item.uid" :is="item.type" v-bind="item"/>
+                </section>
+            </div>
         </main>
     </div>
 </template>
 
 <script>
 import FullPage from '@/assets/js/fullpage'
-import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT, DEF_METADATA} from '@/utils/constant'
+import {DRAW_RECT_WIDTH, DRAW_RECT_HEIGHT, DEF_METADATA, IS_PROD, LOCAL_STORAGE_KEY} from '@/utils/constant'
 import {formatPageStyle} from '@/utils/style'
 
-let metadata = window.yee_metadata || DEF_METADATA
+let metaData = window.yee_metadata
+
+if (IS_PROD) {
+    metaData = metaData || DEF_METADATA
+} else {
+    try {
+        metaData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+    } catch (e) {
+        metaData = metaData || DEF_METADATA
+    }
+}
 
 export default {
     data() {
         return {
-            metadata,
+            metaData,
             xRatio: window.innerWidth / DRAW_RECT_WIDTH,
             yRatio: window.innerHeight / DRAW_RECT_HEIGHT
         }
@@ -36,15 +50,11 @@ export default {
 
 <style lang="scss">
 @import '../assets/scss/common';
-.panel {
+.app {
     flex: 1;
-    .main {
+    .main, .wrap, .page {
+        position: relative;
         height: 100%;
-        .page {
-            height: 100%;
-            position: relative;
-            flex-shrink: 0;
-        }
     }
 }
 </style>

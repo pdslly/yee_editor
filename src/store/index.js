@@ -16,7 +16,7 @@ const Store = new Vuex.Store({
         vms: {},
         histories: [],
         cacheCtrlData: null,
-        currentElementUID: null,
+        currentElement: null,
         currentPageIndex: 0,
         currentHistoryIndex: -1,
     },
@@ -29,18 +29,19 @@ const Store = new Vuex.Store({
         getMetaData({metadata}) {
             return metadata
         },
+        getPageData({metadata}) {
+            return metadata.pages
+        },
         getCurPageIndex({currentPageIndex}) {
             return currentPageIndex
         },
         getCurPageData({metadata, currentPageIndex}) {
-            const data = metadata[currentPageIndex]
+            const data = metadata.pages[currentPageIndex]
             Debug.warn(!data, `PAGE[${currentPageIndex}]不存在`)
             return data || {}
         },
-        getElement({metadata, currentPageIndex, currentElementUID}) {
-            if (!currentElementUID) return null
-            const pageData = metadata[currentPageIndex]
-            return pageData.elements.find(({uid}) => currentElementUID === uid)
+        getElement({currentElement}) {
+            return currentElement
         },
         getCurHistoryIndex({currentHistoryIndex}) {
             return currentHistoryIndex
@@ -56,8 +57,13 @@ const Store = new Vuex.Store({
         }
     },
     mutations: {
-        updateCacheCtrlData(state, {styleObj: {width, height, left, top, angel = 0}}) {
-            state.cacheCtrlData = {width, height, left, top, angel}
+        updateCacheCtrlData(state, {styleObj}) {
+            if (!styleObj) {
+                state.cacheCtrlData = null
+            } else {
+                const {width, height, left, top, angel = 0} = styleObj
+                state.cacheCtrlData = {width, height, left, top, angel}
+            }
         },
         setMetadata(state, metadata) {
             state.metadata = metadata
@@ -68,20 +74,20 @@ const Store = new Vuex.Store({
         setVms({vms}, vm) {
             vms[vm._uid] = vm
         },
-        setElementUID(state, uid) {
-            state.currentElementUID = uid
+        setElement(state, widget) {
+            state.currentElement = widget
         },
         setPageIndex(state, index) {
-            state.currentElementUID = null
+            state.currentElement = null
             state.currentPageIndex = index
         },
         setHistoryIndexPlus(state) {
-            state.currentElementUID = null
+            state.currentElement = null
             state.currentHistoryIndex++
             state.metadata = Clone(state.histories[state.currentHistoryIndex].data)
         },
         setHistoryIndexMinus(state) {
-            state.currentElementUID = null
+            state.currentElement = null
             state.currentHistoryIndex--
             state.metadata = Clone(state.histories[state.currentHistoryIndex].data)
         },
@@ -94,30 +100,42 @@ const Store = new Vuex.Store({
             state.currentHistoryIndex = state.histories.length - 1
         },
         addPage(state, data) {
-            state.currentElementUID = null
-            state.currentPageIndex = state.metadata.push(Clone(data)) - 1
+            state.currentElement = null
+            state.currentPageIndex = state.metadata.pages.push(Clone(data)) - 1
         },
         delPage(state, index) {
-            state.currentElementUID = null
-            state.metadata.splice(index, 1)
+            state.currentElement = null
+            state.metadata.pages.splice(index, 1)
             state.currentPageIndex = Math.max(index - 1, 0)
         },
-        delWidget(state, {uid}) {
-            const {currentPageIndex, metadata} = state
-            const elements = metadata[currentPageIndex].elements
-            const ind = elements.findIndex(ele => ele.uid === uid)
-            elements.splice(ind, 1)
+        delWidget(state, data) {
+            const {isConfig, configName} = data
+            if (isConfig) {
+                state.metadata[configName] = null
+            } else {
+                const {currentPageIndex, metadata} = state
+                const elements = metadata.pages[currentPageIndex].elements
+                const ind = elements.findIndex(ele => ele === data)
+                elements.splice(ind, 1)
+            }
+            state.currentElement = null
         },
         addWidget(state, data) {
             const {currentPageIndex, metadata} = state
-            const pageData = metadata[currentPageIndex]
-            const elements = pageData.elements
+            const {isConfig, configName} = data
+            if (isConfig) {
+                metadata[configName] = state.currentElement = data
+            } else {
+                const pageData = metadata.pages[currentPageIndex]
+                const elements = pageData.elements
 
-            let eData = Clone(data)
-            let ind = ++pageData.eIndex
-            eData.styleObj.zIndex = ind
-            state.currentElementUID = eData.uid = `${currentPageIndex}_${ind}`
-            elements.push(eData)
+                let eData = Clone(data)
+                let ind = ++pageData.eIndex
+                eData.styleObj.zIndex = ind
+                eData.uid = `${currentPageIndex}_${ind}`
+                state.currentElement = eData
+                elements.push(eData)
+            }
         }
     }
 })

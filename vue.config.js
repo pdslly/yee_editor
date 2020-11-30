@@ -19,7 +19,7 @@ module.exports = {
             chunks: ['screenshot', 'chunk-vendors', 'chunk-common']
         }
     },
-    publicPath: process.env.NODE_ENV === "production" ? "/yee/" : "/",
+    publicPath: process.env.NODE_ENV === "production" ? "/static/yee/" : "/",
     devServer: {
         port: 8080,
         host: "0.0.0.0",

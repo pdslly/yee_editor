@@ -3,9 +3,9 @@
         <div class="el-icon-more"></div>
         <div class="button icon icon-undo" @click="setHistoryIndexMinus" :class="{enable: historyIndex > 0}" title="上一步"></div>
         <div class="button icon icon-redo" @click="setHistoryIndexPlus" title="下一步" :class="{enable: histories.length > historyIndex + 1}"></div>
-        <div class="button icon icon-level-up" @click="levelUpHandle" :class="{enable: curEle && curEle.styleObj.zIndex < 999}" title="向上一级"></div>
-        <div class="button icon icon-level-down" @click="levelDownHandle" :class="{enable: curEle && curEle.styleObj.zIndex > 0}" title="向下一级"></div>
-        <!-- <div class="button icon icon-view enable" @click="preview" title="预览"></div> -->
+        <div class="button icon icon-level-up" @click="levelUpHandle" :class="{enable: curEle && curEle.styleObj && curEle.styleObj.zIndex < 999}" title="向上一级"></div>
+        <div class="button icon icon-level-down" @click="levelDownHandle" :class="{enable: curEle&& curEle.styleObj && curEle.styleObj.zIndex > 0}" title="向下一级"></div>
+        <div v-if="!IS_PROD" class="button icon icon-view enable" @click="preview" title="预览"></div>
         <div class="button icon icon-save enable" @click="saveDialogVisible = true" title="保存"></div>
         <el-dialog width="40%" title="确认保存" :visible.sync="saveDialogVisible">
             <el-form ref="form" :model="saveForm" :rules="rules" label-width="80px">
@@ -32,7 +32,7 @@
 <script>
 import QRCode from 'qrcode'
 import {mapGetters, mapMutations} from 'vuex'
-import {LOCAL_STORAGE_KEY} from '@/utils/constant'
+import {LOCAL_STORAGE_KEY, IS_PROD} from '@/utils/constant'
 
 export default {
     name: 'ctrl-panel',
@@ -54,6 +54,7 @@ export default {
             ]
         }
         return {
+            IS_PROD,
             posX: 40,
             posY: 40,
             showPreviewVisiable: false,

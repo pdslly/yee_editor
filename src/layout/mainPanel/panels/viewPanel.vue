@@ -1,9 +1,13 @@
 <template>
     <div class="panel">
-        <main ref="viewMain" class="main" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}">
-            <section v-for="(page, index) in metadata" :key="index" class="page" :style="formatPageStyle(page.style)">
-                <component v-for="item in page.elements" :xRatio="1" :yRatio="1" :key="item.uid" :is="item.type" v-bind="item"/>
-            </section>
+        <main class="app">
+            <component v-if="metaData.bgm" :xRatio="1" :yRatio="1" :is="metaData.bgm.type" v-bind="metaData.bgm"/>
+            <component v-if="metaData.script" :is="metaData.script.type" v-bind="metaData.script"/>
+            <div ref="viewMain" class="wrap" :style="{width: `${DRAW_RECT_WIDTH}px`, height: `${DRAW_RECT_HEIGHT}px`}">
+                <section v-for="(page, index) in pageData" :key="index" class="page" :style="formatPageStyle(page.style)">
+                    <component v-for="item in page.elements" :xRatio="1" :yRatio="1" :key="item.uid" :is="item.type" v-bind="item"/>
+                </section>
+            </div>
         </main>
     </div>
 </template>
@@ -28,7 +32,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            metadata: 'getMetaData'
+            metaData: 'getMetaData',
+            pageData: 'getPageData'
         })
     },
     methods: {
@@ -43,7 +48,11 @@ export default {
 .panel {
     overflow: hidden;
     background-color: #FFF;
-    .main {
+    .app {
+        height: 100%;
+        position: relative;
+    }
+    .wrap {
         height: 100%;
     }
     .page {

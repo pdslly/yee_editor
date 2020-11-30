@@ -1,8 +1,20 @@
 <template>
     <div class="panel">
+        <el-divider>配置组件</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
+            <el-col :span="8" v-for="(item, index) in configs" :key="index">
+                <component-item v-bind="item"></component-item>
+            </el-col>
+        </el-row>
         <el-divider>基础组件</el-divider>
         <el-row type="flex" :gutter="20" class="row-flex">
-            <el-col :span="8" v-for="(item, index) in elements" :key="index">
+            <el-col :span="8" v-for="(item, index) in bases" :key="index">
+                <component-item v-bind="item"></component-item>
+            </el-col>
+        </el-row>
+        <el-divider>特效组件</el-divider>
+        <el-row type="flex" :gutter="20" class="row-flex">
+            <el-col :span="8" v-for="(item, index) in effects" :key="index">
                 <component-item v-bind="item"></component-item>
             </el-col>
         </el-row>
@@ -11,13 +23,15 @@
 
 <script>
 import ComponentItem from '@/components/componentItem'
-import Elements from '@/utils/element'
+import {ConfigElements, BaseElements, EffectElements} from '@/utils/element'
 
 export default {
     name: 'tab-components-library',
     components: {ComponentItem},
     data() {
-        this.elements = Elements
+        this.configs = ConfigElements
+        this.bases = BaseElements
+        this.effects = EffectElements
         return {}
     }
 }

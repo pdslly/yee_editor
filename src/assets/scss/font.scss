@@ -27,6 +27,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-custom {
+  &:before {
+    content: $icon-custom; 
+  }
+}
+.icon-qr {
+  &:before {
+    content: $icon-qr; 
+  }
+}
+.icon-script {
+  &:before {
+    content: $icon-script; 
+  }
+}
+.icon-rain {
+  &:before {
+    content: $icon-rain; 
+  }
+}
+.icon-snow {
+  &:before {
+    content: $icon-snow; 
+  }
+}
 .icon-x-center {
   &:before {
     content: $icon-x-center; 

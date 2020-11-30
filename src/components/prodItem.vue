@@ -22,10 +22,10 @@ export default {
         createdAt: String
     },
     methods: {
-        ...mapMutations(['setMetadata', 'setElementUID', 'setPageIndex', 'pushHistory']),
+        ...mapMutations(['setMetadata', 'setElement', 'setPageIndex', 'pushHistory']),
         apply(data) {
             try {
-                this.setElementUID(null)
+                this.setElement(null)
                 this.pushHistory('保存')
                 this.setPageIndex(0)
                 this.setMetadata(JSON.parse(data))
