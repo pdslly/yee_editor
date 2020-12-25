@@ -12,6 +12,12 @@
                     <el-form-item label="动画延迟">
                         <el-input size="mini" type="number" v-model="element['data-delay']"></el-input>
                     </el-form-item>
+                    <el-form-item label="动画重复">
+                        <el-radio-group v-model="element.styleObj.animationCount">
+                            <el-radio label="1">单次</el-radio>
+                            <el-radio label="infinite">无限循环</el-radio>
+                        </el-radio-group>
+                    </el-form-item>
                     <el-form-item label="图片地址">
                         <el-input size="mini" v-model="element.img" clearable></el-input>
                     </el-form-item>

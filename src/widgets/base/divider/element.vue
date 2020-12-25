@@ -5,7 +5,7 @@
 <script>
 import element from '@/mixins/element'
 
-function formatElementStyle({width = 375, height = 1, top = 0, left = 0, zIndex = 1, radius = 0, backgroundColor = '#000000' }) {
+function formatElementStyle({width = 375, height = 1, top = 0, left = 0, zIndex = 1, radius = 0, backgroundColor = '#000000', animationCount = '1' }) {
     return {
         zIndex,
         backgroundColor,
@@ -14,6 +14,7 @@ function formatElementStyle({width = 375, height = 1, top = 0, left = 0, zIndex 
         height: `${this.calcYAttr(height)}px`, 
         top: `${this.calcYAttr(top)}px`, 
         left: `${this.calcXAttr(left)}px`,
+        'animation-iteration-count': `${animationCount}`
     }
 }
 

@@ -12,5 +12,5 @@ addBaseElement({
     type: Element.name,
     name: '按钮',
     icon: 'icon-button',
-    eData: {type: Element.name, attrCtrl: Control.name, evtCtrl: Event.name, eventObj: {}, 'data-delay': 0, value: '按钮', styleObj: {width: 100, height: 30, backgroundColor: '#FFFFFF', color: '#000000', fontSize: 12, angel: 0, radius: 0, left: 0, top: 0}}
+    eData: {type: Element.name, attrCtrl: Control.name, evtCtrl: Event.name, eventObj: {}, 'data-delay': 0, value: '按钮', styleObj: {width: 100, height: 30, backgroundColor: '#FFFFFF', color: '#000000', fontSize: 12, angel: 0, radius: 0, left: 0, top: 0, animationCount: '1'}}
 })

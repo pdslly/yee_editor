@@ -6,7 +6,7 @@
 import element from '@/mixins/element'
 import event from '@/mixins/event'
 
-function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, fontSize = 16, fontWeight = 'normal', color = '#FFF', backgroundColor = 'transparent' }) {
+function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, fontSize = 16, fontWeight = 'normal', color = '#FFF', backgroundColor = 'transparent', animationCount = '1' }) {
     return {
         color,
         zIndex,
@@ -18,7 +18,8 @@ function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0,
         left: `${this.calcXAttr(left)}px`,
         borderRadius: `${radius}px`,
         transform: `rotateZ(${angel}deg)`,
-        fontSize: `${this.calcXAttr(fontSize)}px`
+        fontSize: `${this.calcXAttr(fontSize)}px`,
+        'animation-iteration-count': `${animationCount}`
     }
 }
 

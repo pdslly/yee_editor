@@ -5,7 +5,7 @@
 <script>
 import element from '@/mixins/element'
 
-function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, color = '#FFF' }, img) {
+function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0, angel = 0, zIndex = 1, radius = 0, color = '#FFF', animationCount = '1' }, img) {
     return {
         color,
         zIndex,
@@ -16,6 +16,7 @@ function formatElementStyle({width = 'auto', height = 'auto', top = 0, left = 0,
         borderRadius: `${radius}px`,
         backgroundImage: `url(${img})`,
         transform: `rotateZ(${angel}deg)`,
+        'animation-iteration-count': `${animationCount}`
     }
 }
 
